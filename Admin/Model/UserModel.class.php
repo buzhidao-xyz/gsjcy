@@ -98,6 +98,17 @@ class UserModel extends CommonModel
 
         return $userinfo;
     }
+
+    //获取会员信息 通过account
+    public function getUserByAccount($account=null)
+    {
+        if (!$account) return false;
+
+        $userinfo = M('user')->where(array('account'=>$account))->find();
+
+        return is_array($userinfo)&&!empty($userinfo) ? $userinfo : array();
+    }
+
     //统计课程学习情况
     public function gcUserCourseLearn($userid=null, $courseclass=array())
     {
@@ -220,10 +231,11 @@ class UserModel extends CommonModel
     }
 
     //获取党支部信息
-    public function getDangzhibu($zhibuid=null)
+    public function getDangzhibu($zhibuid=null, $zhibuname=null)
     {
         $where = array();
         if ($zhibuid) $where['zhibuid'] = $zhibuid;
+        if ($zhibuname) $where['zhibuname'] = $zhibuname;
 
         $total = M('dangzhibu')->where($where)->count();
         $result = M('dangzhibu')->where($where)->order('zhibuid asc')->select();
@@ -243,6 +255,15 @@ class UserModel extends CommonModel
     public function getDangzhibuByID($zhibuid=null)
     {
         if (!$zhibuid) return false;
+
+        $zhibuinfo = $this->getDangzhibu($zhibuid);
+
+        return $zhibuinfo['total'] ? array_shift($zhibuinfo['data']) : array();
+    }
+
+    public function getDangzhibuByName($zhibuname=null)
+    {
+        if (!$zhibuname) return false;
 
         $zhibuinfo = $this->getDangzhibu($zhibuid);
 
