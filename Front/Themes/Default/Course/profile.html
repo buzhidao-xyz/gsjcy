@@ -1,0 +1,67 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Course/resumebox.html"}
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox coursebox maincontbox">
+        {if isset($errormsg)&&$errormsg}
+        <div class="errormsg text-center">{$errormsg}</div>
+        {else}
+        {if isset($courseinfo)&&is_array($courseinfo)&&!empty($courseinfo)}
+        <div class="dataprofiletitle text-center">
+            <h2>{$courseinfo.title}</h2>
+            <h5>{'Y年m月d日 h:i'|date:{$courseinfo.createtime}}</h5>
+            <h5>浏览次数：{$courseinfo.viewnum}</h5>
+        </div>
+        <div class="dataprofilecont text-center">
+            <!-- course video -->
+            <div id="coursevideo" class="coursevideo" courseid="{$courseinfo.courseid}" videoimg="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videoimg}" videofile="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videopath}" coursesign="{$coursesign}"></div>
+            <script type="text/javascript" src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ckplayer/ckplayer.js" charset="utf-8"></script>
+            <script src="{$SERVER.HOST.JS_SERVER}Themes/Default/Assets/js/ckplayer.class.js"></script>
+            
+            <!-- coursefunc -->
+            <div class="coursefunc row">
+                <div class="col-xs-6 text-left">
+                    <p><a href="{if isset($courseinfo.reviewinfo.savename)}{$SERVER.HOST.HTTP_HOST}{$courseinfo.reviewinfo.savepath}{$courseinfo.reviewinfo.savename}{else}javascript:;{/if}" id="ExamBtn" class="btn btn-info" target="_blank"> 下载课程复习资料 </a></p>
+                </div>
+                <div class="col-xs-6 text-right">
+                    {if $courseinfo.status==1}
+                    <p>课程已学习完成？&nbsp;<a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-default btn-red"> 马上进行随堂测评 </a></p>
+                    {else if $courseinfo.status==2}
+                    <p>课程已学习完成？&nbsp;<a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-default btn-red"> 查看随堂测评成绩 </a></p>
+                    {else}
+                    <p>课程已学习完成？&nbsp;<a href="javascript:;" id="ExamBtn" class="btn btn-red disabled"> 马上进行随堂测评 </a></p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+        {/if}
+        {/if}
+        <div class="dataprofilelinks">
+            <p class="linkitem">
+                <span><b>上一课：&nbsp;</b></span>
+                {if isset($courseprevnextinfo['prev']['courseid'])}
+                <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseprevnextinfo['prev']['courseid']}&classid={$courseinfo.classid}">{$courseprevnextinfo['prev']['title']}</a>
+                {else}
+                <span>无</span>
+                {/if}
+            </p>
+            <p class="linkitem">
+                <span><b>下一课：&nbsp;</b></span>
+                {if isset($courseprevnextinfo['next']['courseid'])}
+                <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseprevnextinfo['next']['courseid']}&classid={$courseinfo.classid}">{$courseprevnextinfo['next']['title']}</a>
+                {else}
+                <span>无</span>
+                {/if}
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

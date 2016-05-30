@@ -1,0 +1,504 @@
+/**
+ * 基础CSS样式表
+ * buzhidao
+ * 2015-12-08
+ */
+html {
+
+}
+body {
+
+}
+div {
+
+}
+table {
+
+}
+ul {
+
+}
+ul li {
+
+}
+input {
+
+}
+h1, h2, h3, h4, h5 {
+
+}
+
+a:hover {
+    color: #CB1C1D;
+    text-decoration: none;
+}
+
+.btn.btn-red {
+    background: #CB1C1D none repeat scroll 0 0;
+    border-color: #CB1C1D;
+    color: #fff;
+    border-radius: 0;
+}
+.btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active, .open .dropdown-toggle.btn-red {
+    background: #a71011 none repeat scroll 0 0;
+    border-color: #a71011;
+}
+.btn.btn-info {
+    border-radius: 0;
+}
+.btn.btn-primary {
+    border-radius: 0;
+}
+
+.form-control:focus {
+    border-color: #CB1C1D;
+}
+
+/*content样式*/
+.content {
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    min-height: 453px;
+}
+
+.maincontbox {
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+}
+
+/*Resume样式表*/
+.resumebox {
+    width: 100%;
+    height: auto;
+    padding: 5px 0;
+    display: block;
+    overflow: hidden;
+    background: #F5F6F7;
+    border-bottom: 1px solid #E1E1E1;
+    font-size: 15px;
+}
+.resumebox .resume {
+    float: none;
+    display: block;
+    overflow: hidden;
+    padding: 0 10px;
+    font-size: 12px;
+    /*background: #EFEFEF;*/
+    border-bottom: 1px solid #EFEFEF;
+}
+.resumebox .resume span.title {
+    font-weight: 600;
+    height: auto;
+}
+.resumebox .resume span.cont {
+    height: auto;
+    padding: 3px 0;
+    margin-right: 15px;
+    display: inline-block;
+}
+.resumebox .resume .progress {
+    height: 13px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+.resumebox .resume .progress .progress-bar {
+    height: 13px;
+    line-height: 13px;
+    background: #CB1C1D;
+}
+.resumebox .resume-testing .progress .progress-bar {
+    background: #348fe2;
+}
+.resumebox .resume-work .progress .progress-bar {
+    background: #ec971f;
+}
+
+/*resumenav样式*/
+.resumenav {
+    display: block;
+    overflow: hidden;
+}
+.resumenav ul {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.resumenav ul li {
+    float: left;
+    display: block;
+    overflow: hidden;
+}
+.resumenav ul li a {
+    display: block;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    height: auto;
+    font-size: 13px;
+    text-align: center;
+    /*margin-left: 5px;*/
+    padding: 5px 7px;
+    color: #88673e;
+}
+.resumenav ul li a:hover {
+    color: #CB1C1D;
+    background: #E1E1E1;
+    text-decoration: none;
+}
+.resumenav ul li.active a {
+    color: #CB1C1D;
+    background: #E1E1E1;
+    text-decoration: none;
+}
+
+/*datalist样式表*/
+.datalistbox {
+    display: block;
+    overflow: hidden;
+    padding: 5px;
+}
+.datalistbox ul.listbox {
+    display: block;
+    overflow: hidden;
+    margin-left: 0;
+    padding-left: 0;
+}
+.datalistbox ul.listbox li {
+    display: block;
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px dashed #E1E1E1;
+}
+.datalistbox ul.listbox li a:hover {
+    color: #CB1C1D;
+}
+.datalistbox ul.listbox li a.btn-red:hover {
+    color: #FFFFFF;
+}
+.datalistbox ul.listbox li .img-logo {
+    
+}
+.datalistbox ul.listbox li .img-logo img {
+    width: 95%;
+    max-height: 90px;
+}
+.datalistbox ul.listbox li .cont {
+    float: none;
+}
+.datalistbox ul.listbox li .cont a.title {
+    display: block;
+    font-size: 13px;
+    width: auto;
+    /*height: 15px;
+    line-height: 15px;*/
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    text-indent: 10px;
+    background: url("../images/icon_arrow_right.gif") no-repeat left 1px;
+}
+.datalistbox ul.listbox li .cont a.done {
+    color: #CB1C1D;
+}
+.datalistbox ul.listbox li .cont .course_s_icon {
+    height: 23px;
+    margin-top: 5px;
+}
+.datalistbox ul.listbox li .cont .tongji {
+    display: block;
+    float: right;
+    margin-top: 5px;
+    position: relative;
+    font-size: 12px;
+}
+.datalistbox ul.listbox li .ops {
+    width: auto;
+    padding: 5px 0px;
+    display: block;
+    overflow: hidden;
+}
+.datalistbox ul.listbox li .ops a.btn-study {
+    width: 100%;
+    padding: 3px 10px;
+    border-radius: 1px;
+}
+.datalistbox ul.listbox li .ops p {
+    text-align: center;
+    padding: 15px 0 5px 0;
+    margin-bottom: 0;
+}
+.datalistbox ul.listbox li .ops p a {
+    margin: 0 10px;
+    color: #CB1C1D;
+    text-decoration: underline;
+}
+.datalistbox ul.listbox li .ops p a.disabled {
+    color: #A1A1A1;
+}
+
+/*profile page*/
+.dataprofilebox {
+    display: block;
+    overflow: hidden;
+    padding: 5px;
+}
+.dataprofilebox .errormsg {
+    font-size: 27px;
+    font-weight: 700;
+    color: #cb1c1d;
+    min-height: 550px;
+    line-height: 300px;
+}
+.dataprofilebox .dataprofiletitle {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.dataprofilebox .dataprofiletitle h2 {
+    font-size: 19px;
+    padding: 0 10px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+.dataprofilebox .dataprofiletitle h2 a.wlink {
+    color: #333333;
+}
+.dataprofilebox .dataprofiletitle h2 a.wlink:hover {
+    color: #cb1c1d;
+}
+.dataprofilebox .dataprofiletitle h5 {
+    color: #999999;
+    margin: 5px 0;
+    font-size: 12px;
+}
+.dataprofilebox .dataprofiletitle a.helppdf {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: 275px;
+}
+.dataprofilebox .dataprofiletitle span.score {
+    display: inline-block;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 237px;
+    font-size: 45px;
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont {
+    color: #333333;
+    font-size: 14px;
+    font-family: "宋体,Arial Narrow,arial,serif";
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.dataprofilebox .dataprofilecont .coursevideo {
+    padding-bottom: 0px;
+}
+.dataprofilebox .dataprofilecont .coursefunc {
+    padding: 15px 0;
+    border-top: 1px dashed #F1F1F1;
+}
+.dataprofilebox .dataprofilecont .coursefunc p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilelinks {
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+/*testing profile*/
+.dataprofilebox .dataprofilecont {
+    display: block;
+    overflow: hidden;
+    padding: 15px 10px;
+}
+.dataprofilebox .dataprofilecont img {
+    width: 100%;
+    max-width: 100%;
+}
+.dataprofilebox .dataprofilecont ul.exambox {
+    display: block;
+    overflow: hidden;
+}
+.dataprofilebox .dataprofilecont ul.exambox li {
+    display: block;
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px dashed #E1E1E1;
+    color: #333333;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .examsubject {
+    float: none;
+    width: auto;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .examresult {
+    float: right;
+    width: 135px;
+    margin-top: 30px;
+    text-align: center;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.no {
+    padding-right: 10px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.examtype {
+    float: right;
+    color: #337ab7;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.myoptions {
+    font-weight: 700;
+    padding: 0 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.right {
+    color: #5cb85c;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.wrong {
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options {
+    display: block;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option {
+    font-size: 13px;
+    padding: 0px 10px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option label {
+    color: #333333;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option span.optiont {
+    padding-right: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .right span {
+    font-weight: 700;
+    color: #5cb85c;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .wrong span {
+    font-weight: 700;
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .answer {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5cb85c;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .resultinfo {
+    padding: 0;
+    padding-top: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .resultinfo .myoptions {
+    font-size: 13px;
+    font-weight: 700;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .resultinfo .right {
+    color: #5cb85c;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .resultinfo .wrong {
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .resultinfo img {
+    width: 16px;
+    height: 16px;
+}
+.dataprofilebox .dataprofilecont .examinfo {
+    display: block;
+    overflow: hidden;
+    margin-top: 0px;
+}
+.dataprofilebox .dataprofilecont .examinfo .info {
+    font-size: 15px;
+}
+
+/*arclist样式表*/
+.arclist {
+    display: block;
+    overflow: hidden;
+}
+.arclist li {
+    display: block;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+    padding: 10px 0;
+    border-bottom: 1px dashed #D1D1D1;
+}
+.arclist li .time {
+    float: left;
+    display: block;
+    overflow: hidden;
+    /*width: 60px;*/
+    height: auto;
+    text-align: center;
+    padding-top: 3px;
+    background: #F5F6F7;
+}
+.arclist li .time p.y {
+    font-size: 23px;
+    color: #CB1C1D;
+    margin-bottom: 3px;
+}
+.arclist li .time p.md {
+    font-size: 15px;
+    color: #CB1C1D;
+    margin-bottom: 3px;
+}
+.arclist li .cont {
+    float: left;
+    display: block;
+    overflow: hidden;
+    padding-left: 5px;
+}
+.arclist li .cont .title {
+    font-size: 13px;
+    margin-bottom: 5px;
+    padding-left: 23px;
+    background: url("../images/icon_flag.gif") no-repeat 3px 3px;
+}
+.arclist li .cont .title a {
+    display: block;
+    height: 19px;
+    line-height: 19px;
+    overflow: hidden;
+}
+.arclist li .cont .desc {
+    font-size: 13px;
+    text-indent: 26px;
+    height: 36px;
+    overflow: hidden;
+}
+
+/*pagination样式表*/
+.pagination {
+    float: right;
+}
+.pagination > li > a {
+    border-radius: 1px !important;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background: #CB1C1D none repeat scroll 0 0 !important;
+    border-color: #CB1C1D !important;
+}
+.pager li > a, .pager li > span, .pagination > li > a {
+    border-color: #E1E1E1;
+}
+.pager li > a:hover, 
+.pager li > a:focus, 
+.pager li > span:hover,
+.pager li > span:focus,
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+    color: #CB1C1D;
+    background: #F1F1F1;
+    border-color: #CB1C1D;
+}

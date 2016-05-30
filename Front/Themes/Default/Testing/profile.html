@@ -1,0 +1,87 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Testing/resumebox.html"}
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox testingbox maincontbox">
+        <div class="dataprofiletitle text-center">
+            <h2><a href="{$ANY.__APP__}?s=Course/profile&courseid={$testinginfo.courseid}&classid={$testinginfo.classid}" class="wlink" target="_blank">{$testinginfo.title}</a></h2>
+            <h5>{'Y年m月d日 h:i'|date:{$testinginfo.createtime}}</h5>
+            <h3><font color="#CB1C1D">本课随堂测评成绩</font><span class="score">{$testinginfo.gotscore}分</span></h3>
+        </div>
+        <div class="dataprofilecont">
+            <form name="examform">
+            <ul class="list-unstyled exambox">
+                {foreach $testinginfo.exams as $examinfo}
+                <li>
+                    <div class="examsubject">
+                        <p class="question">
+                            <span class="no">{$examinfo.sortno}.</span>{$examinfo.title}
+                            <!-- <span class="myoptions {if $examinfo.result}right{else}wrong{/if}">{$examinfo.useranswer}</span> -->
+                        </p>
+                        <div class="options row">
+                            {foreach $examinfo.options as $option}
+                            <div class="option col-xs-6">
+                                <label>
+                                    <span class="optiont">{$option.name}.</span><span class="optionc">{$option.title}</span>
+                                </label>
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                    <div class="examresult">
+                        {if $examinfo.result}
+                        <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_right.png" class="img-responsive center-block">
+                        <p class="answer">你的答案：{$examinfo.useranswer}</p>
+                        {else}
+                        <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_wrong.png" class="img-responsive center-block">
+                        <p class="answer" style="color: #CB1C1D;">你的答案：{$examinfo.useranswer}</p>
+                        {/if}
+                    </div>
+                </li>
+                {/foreach}
+            </ul>
+            <div class="examinfo row">
+                <div class="col-xs-6 text-left">
+                    <p>
+                        <a href="{if isset($testinginfo.reviewinfo.savename)}{$SERVER.HOST.HTTP_HOST}{$testinginfo.reviewinfo.savepath}{$testinginfo.reviewinfo.savename}{else}javascript:;{/if}" id="ExamBtn" class="btn btn-info" target="_blank"> 课程复习 </a>
+                        {if !$testinginfo.utstatus}
+                        <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-red"> 重新测评 </a>
+                        {/if}
+                    </p>
+                </div>
+                <div class="col-xs-6 text-right info">
+                    <span><b>测评成绩：</b></span>
+                    <span>答对 <font color="#348fe2" size="5">{$testinginfo.rightexam}</font> 题 、 答错 <font color="#CB1C1D" size="5">{$testinginfo.wrongexam}</font> 题</span>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="dataprofilelinks">
+            <p class="linkitem">
+                <span><b>上一课测评：&nbsp;</b></span>
+                {if is_array($testingprevnextinfo.prev)&&!empty($testingprevnextinfo.prev)}
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testingprevnextinfo.prev.testingid}&classid={$testinginfo.classid}">{$testingprevnextinfo.prev.title}</a>
+                {else}
+                无
+                {/if}
+            </p>
+            <p class="linkitem">
+                <span><b>下一课测评：&nbsp;</b></span>
+                {if is_array($testingprevnextinfo.next)&&!empty($testingprevnextinfo.next)}
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testingprevnextinfo.next.testingid}&classid={$testinginfo.classid}">{$testingprevnextinfo.next.title}</a>
+                {else}
+                无
+                {/if}
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

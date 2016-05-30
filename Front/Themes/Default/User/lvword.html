@@ -1,0 +1,63 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Public/homeresume.html"}
+
+    <!-- begin homebox -->
+    <div class="maincontbox homebox">
+        <!-- homemenu -->
+        {include file="User/homemenu.html"}
+
+        <!-- homecontent -->
+        <div class="homecontent">
+            <div class="hometitle">
+                <span class="cont">反馈意见</span>
+            </div>
+            <form name="homeform" method="post" action="{$ANY.__APP__}?s=User/lvwordsave" class="form-horizontal homeform">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">标题：</label>
+                    <div class="col-xs-8">
+                        <input type="text" name="title" class="form-control" placeholder="反馈意见标题 例：关于系统使用等">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">内容：</label>
+                    <div class="col-xs-8">
+                        <textarea name="content" class="form-control" rows="10" placeholder="反馈意见内容 不超过300字"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-red">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+
+<script type="text/javascript">
+$(function (){
+    //保存用户密码
+    $("form[name=homeform]").submit(function (){
+        var url = $(this).attr('action');
+        var postdata = $(this).serialize();
+        $.post(url, postdata, function (data){
+            alert(data.msg);
+            if (!data.error) {
+                location.href = location.href;
+            }
+        }, 'json');
+
+        return false;
+    });
+})
+</script>
+
+{include file="Common/foot.html"}

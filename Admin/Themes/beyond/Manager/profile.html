@@ -1,0 +1,100 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">系统管理</a></li>
+            <li class="active">管理员</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>编辑管理员</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Manager/index" class="btn btn-primary">管理员</a>
+            <a href="{$ANY.__APP__}?s=Manager/newmanager" class="btn btn-darkorange">新增管理员</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">编辑管理员账号</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" name="managerform" method="post" action="{$ANY.__APP__}?s=Manager/managersave" class="dataform">
+                    <input type="hidden" name="managerid" value="{$minfo.managerid}">
+                    <div class="form-title"><b>账号信息</b></div>
+                    <div class="form-group">
+                        <label>账号：</label>
+                        <span class="input-icon icon-right">
+                            <b>{$minfo.account}</b>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>密码：</label>
+                        <span class="input-icon icon-right">
+                            <input type="password" name="password" value="" placeholder="系统管理员密码 5-20位 字母数字 例：sxdw123456" class="form-control">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 保存 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<script>
+$(function (){
+//Form提交 保存信息
+$("form[name=managerform]").submit(function (){
+    var url = $(this).attr('action');
+    var postdata = $(this).serialize();
+    $.post(url, postdata, function (data){
+        var status = data.error ? 'error' : 'success';
+        alertPanelShow(status, data.msg);
+        if (!data.error) {
+            var location_href = "";
+            if ("location" in data.data) {
+                location_href = data.data.location;
+            }
+            location.href = location_href ? location_href : location.href;
+        }
+    }, 'json');
+    return false;
+});
+});
+</script>
+{include file="Common/foot.html"}

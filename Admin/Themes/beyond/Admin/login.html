@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>系统登录 - 三星党建平台 - 三星党委党校</title>
+
+    <meta name="description" content="系统登录 - 三星党建平台 - 三星党委党校" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/favicon.ico" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/beyond.min.css" rel="stylesheet" />
+
+    <!-- login css -->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/login.css" rel="stylesheet" />
+
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices) -->
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/pace/pace.min.js"></script>
+    <script type="text/javascript">
+    var JS_APP = '{$ANY.__APP__}';
+    
+    var JS_SERVER    = '{$SERVER.HOST.SOUND_SERVER}Themes/beyond/Assets/js/';
+    var CSS_SERVER   = '{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/css/';
+    var IMAGE_SERVER = '{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/';
+    </script>
+</head>
+<!-- /Head -->
+
+<!-- Body -->
+<body>
+    <!-- alertpanel -->
+    {include file="Public/alertpanel.html"}
+
+    <!-- cover -->
+    <div class="cover">
+        <!-- loginbox -->
+        <div class="loginbox">
+            <div class="loginlogo">
+                <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/logo.png" class="img-responsive center-block">
+            </div>
+            <form role="form" name="loginform" method="post" action="{$ANY.__APP__}?s=Admin/loginck" id="loginform" class="loginform">
+                <div class="form-group form-title text-center">
+                    <h3>系统登录</h3>
+                </div>
+                <div class="form-group">
+                    <span class="input-icon icon-right">
+                        <input type="text" name="account" placeholder="账号" class="form-control">
+                        <i class="fa fa-user"></i>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <span class="input-icon icon-right">
+                        <input type="password" name="password" placeholder="密码" class="form-control">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <span class="input-icon icon-right" style="width: 155px;">
+                        <input type="text" name="vcode" placeholder="验证码" class="form-control">
+                        <i class="fa fa-codepen"></i>
+                    </span>
+                    <span style="float: right;"><img id="VCode" class="vcode" src="{$ANY.__APP__}?s=Org/VCode"></span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-darkorange" type="submit"> 登 录 </button>
+                </div>
+            </form>
+        </div>
+        <!-- /loginbox -->
+    </div>
+    <!-- /cover -->
+
+    <!-- copyright -->
+    <div class="copyright text-center" style="">
+        <span>三星党委党校 &copy;2016 版权所有</span>
+    </div>
+
+    <!-- JQuery -->
+    <script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/jquery/jquery-1.11.3.min.js"></script>
+    <script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <!--Basic Scripts-->
+    <script src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/bootstrap.min.js"></script>
+    <!-- bzd js -->
+    <script src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/bzd.js"></script>
+    <script>
+    $(function (){
+        //刷新验证码
+        var VCodeSrc = $("img#VCode").attr("src");
+        $("img#VCode").click(function() {
+            $(this).attr("src", VCodeSrc+"&"+parseInt(Math.random()*100000))
+        });
+
+        //登录Form
+        $("#loginform").submit(function () {
+            var url = $(this).attr("action");
+            var method = $(this).attr("method");
+            var d = $(this).serialize();
+
+            $.post(url, d, function(data) {
+                var status = data.error ? 'error' : 'success';
+                alertPanelShow(status, data.msg);
+                if (!data.error) {
+                    var location_href = "";
+                    if ("location" in data.data) {
+                        location_href = data.data.location;
+                    }
+                    location.href = location_href ? location_href : location.href;
+                }
+                $("img#VCode").click();
+            }, 'json');
+
+            return false;
+        });
+    })
+    </script>
+</body>
+<!-- /Body -->
+
+</html>

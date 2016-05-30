@@ -1,0 +1,81 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Public/homeresume.html"}
+
+    <!-- begin homebox -->
+    <div class="maincontbox homebox">
+        <!-- homemenu -->
+        {include file="User/homemenu.html"}
+
+        <!-- homecontent -->
+        <div class="homecontent">
+            <div class="hometitle">
+                <span class="cont">学习记录</span>
+            </div>
+
+            <!-- begin dataprofilebox -->
+            <div class="dataprofilebox" style="border: 0;">
+                <div class="dataprofilecont" style="padding: 30px 0;">
+                    <div class="scorebox">-----你的课程测评平均得分：<font color="#CB1C1D">{$usergotscore}分</font></div>
+                    <ul class="coursedlist list-unstyled">
+                        {if isset($usercourselist)&&is_array($usercourselist)&&!empty($usercourselist)}
+                        {foreach $usercourselist as $usercourseinfo}
+                        <li>
+                            <p class="time">
+                                <span>- {'Y年m月d日 H:i'|date:{$usercourseinfo.completetime}}</span>
+                                {if $usercourseinfo.status==1}
+                                <span style="float: right; color: #CB1C1D;">[已学习]</span>
+                                {else if $usercourseinfo.status==2}
+                                <span style="float: right; color: #348fe2;">[已测评]</span>
+                                {else}
+                                <span style="float: right; color: #A1A1A1;">[未学习]</span>
+                                {/if}
+                            </p>
+                            <a href="{$ANY.__APP__}?s=Course/profile&courseid={$usercourseinfo.courseid}&classid={$usercourseinfo.classid}" class="title" target="_blank">{$usercourseinfo.title}</a>
+                        </li>
+                        {/foreach}
+                        {/if}
+                    </ul>
+                </div>
+                {include file="Public/pagination.html"}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+<style type="text/css" media="screen">
+.scorebox {
+    display: block;
+    overflow: hidden;
+    padding: 0 0 10px 0;
+    font-weight: 700;
+    font-size: 17px;
+}
+ul.coursedlist {
+    padding: 5px 0;
+    border-left: 1px solid #575757;
+}
+ul.coursedlist li {
+    padding: 7px 0;
+    border-bottom: 1px dashed #F1F1F1;
+}
+ul.coursedlist li p.time {
+    color: #575757;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+ul.coursedlist li a.title {
+    /*color: #CB1C1D;*/
+    font-size: 15px;
+    margin-left: 15px;
+    display: inline-block;
+}
+</style>
+
+{include file="Common/foot.html"}

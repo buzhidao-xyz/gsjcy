@@ -1,0 +1,51 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        {include file="Public/resume_courselearn.html"}
+
+        {include file="Public/resumenav_course.html"}
+    </div>
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox coursebox maincontbox">
+        {if isset($errormsg)&&$errormsg}
+        <div class="errormsg text-center">{$errormsg}</div>
+        {else}
+        {if isset($courseinfo)&&is_array($courseinfo)&&!empty($courseinfo)}
+        <div class="dataprofiletitle text-center">
+            <h2>{$courseinfo.title}</h2>
+            <h5>{'Y年m月d日 h:i'|date:{$courseinfo.createtime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览次数：{$courseinfo.viewnum}</h5>
+        </div>
+        <div class="dataprofilecont text-center">
+            <!-- course video -->
+            <div id="coursevideo" class="coursevideo" classid="{$courseinfo.classid}" courseid="{$courseinfo.courseid}" videoimg="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videoimg}" videofile="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videopath}" coursesign="{$coursesign}"></div>
+            <script type="text/javascript" src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ckplayer/ckplayer.js" charset="utf-8"></script>
+            <script src="{$SERVER.HOST.JS_SERVER}Themes/Default/Assets/js/ckplayer.class.js"></script>
+            
+            <!-- coursefunc -->
+            <div class="coursefunc row">
+                <!-- <div class="col-xs-6">
+                    <p><a href="javascript:;" id="ExamBtn" class="btn btn-block btn-info"> 复习资料 </a></p>
+                </div> -->
+                <div class="col-xs-12">
+                    {if $courseinfo.status==1}
+                    <p><a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 随堂测评 </a></p>
+                    {else if $courseinfo.status==2}
+                    <p><a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 查看成绩 </a></p>
+                    {else}
+                    <p><a href="javascript:;" id="ExamBtn" class="btn btn-block btn-red disabled"> 随堂测评 </a></p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+        {/if}
+        {/if}
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

@@ -1,0 +1,63 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li class="active">页面跳转</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>页面跳转</h1>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        {if $pagereturn.error}
+        <h1><font color="red">{$pagereturn.msg}</font></h1>
+        {else}
+        <h1><font color="green">{$pagereturn.msg}</font></h1>
+        {/if}
+        <h3>请等待<span class="no">3</span>秒 页面跳转中...</h3>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<script>
+$(function (){
+    //倒计时
+    setInterval(function (){
+        var s = parseInt($("span.no").text())-1;
+        $("span.no").text(s);
+        if (s <= 0) window.location.href = "{$pagereturn.location}";
+    }, 1000);
+});
+</script>
+
+{include file="Common/foot.html"}

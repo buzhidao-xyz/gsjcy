@@ -1,0 +1,91 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+
+<link href="{$SERVER.HOST.PUBLIC_SERVER}plugins/slidebox/css/jquery.slideBox.css" rel="stylesheet" />
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/slidebox/js/jquery.slideBox.js"></script>
+<script>
+$(function(){
+    $('#SlideBox').slideBox({
+        duration : 0.3,//滚动持续时间，单位：秒
+        easing : 'linear',//swing,linear//滚动特效
+        delay : 5,//滚动延迟时间，单位：秒
+        hideClickBar : false,//不自动隐藏点选按键
+        clickBarRadius : 10,
+        hideBottomBar : false//隐藏底栏
+    });
+});
+</script>
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin bannerpanel -->
+    <div class="bannerpanel">
+        <div class="maincontbox">
+            <div class="bannerbox">
+                <div id="SlideBox" class="slideBox">
+                    <ul class="items">
+                        {if isset($simglist)&&is_array($simglist)&&!empty($simglist)}
+                        {foreach $simglist as $d}
+                        <li><a href="{$d.link}" title="{$d.title}" target="_blank"><img src="{$SERVER.HOST.HTTP_HOST}{$d.simgpath}" style="width: 700px; height: 328px;"></a></li>
+                        {/foreach}
+                        {/if}
+                    </ul>
+                </div>
+            </div>
+            <div class="loginbox">
+                {include file="Index/login.html"}
+            </div>
+            <div class="caption clearfix">
+                <p class="tongji">平台已有在线课程 <font color="#CB1C1D" size="5">{$coursenum}</font> 章，已有 <font color="#CB1C1D" size="5">{$usernum}</font> 位党员参与学习</p>
+                <p class="activitybanner"><a href="{$ANY.__APP__}?s=User/learning"><img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/activity_banner.png"></a></p>
+            </div>
+        </div>
+    </div>
+    <!-- end bannerpanel -->
+
+    <!-- begin articlepanel -->
+    <div class="articlepanel maincontbox">
+        <!-- news box -->
+        <div class="articlelistbox newsbox">
+            <div class="title">
+                <span>党建新闻</span>
+                <a href="{$ANY.__APP__}?s=Article/news" class="link">更多>></a>
+            </div>
+            <ul class="cont list-unstyled">
+                {if isset($djarclist)&&is_array($djarclist)&&!empty($djarclist)}
+                {foreach $djarclist as $d}
+                <li><a href="{$ANY.__APP__}?s=Article/news&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a><span class="time">[{'m.d'|date:{$d.createtime}}]</span></li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+
+        <!-- notice box -->
+        <div class="articlelistbox noticebox">
+            <div class="title">
+                <span>平台公告</span>
+                <a href="{$ANY.__APP__}?s=Article/notice" class="link">更多>></a>
+            </div>
+            <ul class="cont list-unstyled">
+                {if isset($ntarclist)&&is_array($ntarclist)&&!empty($ntarclist)}
+                {foreach $ntarclist as $d}
+                <li><a href="{$ANY.__APP__}?s=Article/notice&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a><span class="time">[{'m.d'|date:{$d.createtime}}]</span></li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+
+        <!-- qrcode box -->
+        <div class="qrcodebox">
+            <div class="title"><a href="javascript:;" class="link">官方微信公众号</a></div>
+            <div class="cont">
+                <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/qrcode.png">
+            </div>
+        </div>
+    </div>
+    <!-- end articlepanel -->
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

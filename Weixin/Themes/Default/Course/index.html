@@ -1,0 +1,67 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        {include file="Public/resume_courselearn.html"}
+
+        {include file="Public/resumenav_course.html"}
+    </div>
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox">
+        <!-- listbox -->
+        <ul class="listbox list-unstyled">
+            {if isset($courselist)&&is_array($courselist)&&!empty($courselist)}
+            {foreach $courselist as $courseinfo}
+            <li>
+                <!-- <div class="img-logo">
+                    <img src="{$SERVER.HOST.HTTP_HOST}{$courseinfo.showimg}" class="img-responsive center-block">
+                </div> -->
+                <div class="cont">
+                    {if $courseinfo.status}
+                    <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" title="{$courseinfo.title}" class="title done">{$courseinfo.title}</a>
+                    <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/course_s_done_icon.png" class="course_s_icon">
+                    {else}
+                    <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" title="{$courseinfo.title}" class="title">{$courseinfo.title}</a>
+                    <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/course_s_none_icon.png" class="course_s_icon">
+                    {/if}
+                    <span class="tongji">已有 <font color="#CB1C1D" size="3">{$courseinfo.learnnum}</font> 位党员参加学习</span>
+                </div>
+                <div class="ops row clearfix">
+                    <div class="col-xs-6">
+                        {if $courseinfo.status}
+                        <a href="javascript:;" class="btn btn-default btn-study disabled">已学习</a>
+                        {else}
+                        {if $courseinfo.courseid==$clearncourseid}
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-default btn-study btn-red">马上去学习</a>
+                        {else}
+                        <a href="javascript:;" class="btn btn-default btn-study btn-red disabled" disabled>马上去学习</a>
+                        {/if}
+                        {/if}
+                    </div>
+                    <div class="col-xs-6">
+                        {if $courseinfo.status==1}
+                        <a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">完成随堂测评</a>
+                        {else if $courseinfo.status==2}
+                        <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">随堂测评成绩</a>
+                        {else}
+                        <a href="javascript:;" class="btn btn-block btn-study btn-info disabled" disabled>完成随堂测评</a>
+                        {/if}
+                    </div>
+                </div>
+            </li>
+            {/foreach}
+            {else}
+            <p><h3 class="text-center">暂无课程</h3></p>
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

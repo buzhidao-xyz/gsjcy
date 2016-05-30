@@ -1,0 +1,25 @@
+<!-- homemenu -->
+<div class="homemenu">
+    <p class="welcome">
+        <span>{$userinfo.username}</span> ， 欢迎你！
+    </p>
+    <ul class="list-unstyled">
+        <li {if isset($homemenuflag)&&$homemenuflag=="home"}class="active"{/if}>
+            <a href="{$ANY.__APP__}?s=User/home"><img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_user.png">个人资料</a>
+        </li>
+        <li {if isset($homemenuflag)&&$homemenuflag=="chpasswd"}class="active"{/if}>
+            <a href="{$ANY.__APP__}?s=User/chpasswd"><img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_lock.png">修改密码</a>
+        </li>
+        <li {if isset($homemenuflag)&&$homemenuflag=="courselist"}class="active"{/if}>
+            <a href="{$ANY.__APP__}?s=User/courselist"><img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_courselist.png">学习记录</a>
+        </li>
+        <li {if isset($homemenuflag)&&$homemenuflag=="lvword"}class="active"{/if}>
+            <a href="{$ANY.__APP__}?s=User/lvword"><img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/icon_lvword.png">反馈意见</a>
+        </li>
+    </ul>
+</div>
+<style type="text/css" media="screen">
+.homemenu ul li a img {
+    width: 24px;
+}
+</style>

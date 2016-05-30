@@ -1,0 +1,60 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Testing/resumebox.html"}
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox testingbox maincontbox">
+        <!-- listnav -->
+        <ul id="listnav" class="listnav list-unstyled">
+            {foreach $courseclass as $class}
+            <li class="item {if isset($classid)&&$classid==$class.id}active{/if}"><a href="{$ANY.__APP__}?s=Testing/index&classid={$class.id}">{$class.name}</a></li>
+            {/foreach}
+        </ul>
+        <script src="{$SERVER.HOST.PUBLIC_SERVER}js/jquery-scrolltofixed-min.js"></script>
+        <script>
+            $('#listnav').scrollToFixed({
+                marginTop: 70
+            });
+        </script>
+
+        <!-- testinglist -->
+        <ul class="testinglist list-unstyled">
+            {if isset($testinglist)&&is_array($testinglist)&&!empty($testinglist)}
+            {foreach $testinglist as $testinginfo}
+            <li>
+                <span class="t"><b>测评：</b></span>
+                {if $testinginfo.utstatus}
+                <a href="{$ANY.__APP__}?s=Testing/profile&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="name completed">[已学习]{$testinginfo.title}</a>
+                <span class="completed">已完成</span>
+                <a href="{$ANY.__APP__}?s=Testing/profile&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-primary oplink">查看成绩</a>
+                {else}
+                {if $testinginfo.ucstatus}
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="name">[已学习]{$testinginfo.title}</a>
+                <span class="uncompleted">未完成</span>
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-red oplink">开始测评</a>
+                {else}
+                <a href="javascript:;" class="name disabled" disabled><font color="#CB1C1D">[未学习]</font>{$testinginfo.title}</a>
+                <span class="uncompleted">未完成</span>
+                <a href="javascript:;" class="btn btn-red oplink disabled" disabled>开始测评</a>
+                {/if}
+                {/if}
+                <!-- <a href="javascript:;" class="btn btn-info oplink">复习资料</a> -->
+                <a href="{if isset($testinginfo.reviewinfo.savename)}{$SERVER.HOST.HTTP_HOST}{$testinginfo.reviewinfo.savepath}{$testinginfo.reviewinfo.savename}{else}javascript:;{/if}" id="ExamBtn" class="btn btn-info oplink" target="_blank"> 复习资料 </a>
+            </li>
+            {/foreach}
+            {else}
+            <p><h3 class="text-center">暂无测评</h3></p>
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

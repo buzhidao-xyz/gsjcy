@@ -1,0 +1,161 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">试卷题库</a></li>
+            <li class="active">试卷管理</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>平台试卷管理</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Testing/index" class="btn btn-primary">试卷管理</a>
+            <a href="{$ANY.__APP__}?s=Testing/newtesting" class="btn btn-darkorange">发布试卷</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">发布课程试卷</span>
+            </div>
+            <div class="widget-body">
+                <div id="examboxpanel" style="display: none;"></div>
+                <form role="form" name="testingform" method="post" action="{$ANY.__APP__}?s=Testing/testingsave" class="dataform">
+                    <div class="form-title"><b>基本信息</b></div>
+                    <div class="form-group">
+                        <label>选择课程：</label>
+                        <span class="input-icon icon-right">
+                            <select name="courseid" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择平台课程--- </option>
+                                {foreach $courselist as $d}
+                                <option value="{$d.courseid}" {if $courseid==$d.courseid}selected{/if}>{$d.title}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" value="1" class="colored-success" checked>
+                                <span class="text">启用该课程试卷</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-title"><b>试卷试题</b></div>
+                    <div id="examlistbox" class="form-group examlistbox"></div>
+                    <div class="form-group">
+                        <a href="{$ANY.__APP__}?s=Testing/getexambox" class="btn btn-red" id="newexambtn">添加试题</a>
+                        <a href="javascript:;" class="btn btn-sky" id="excelexambtn">导入试题</a>
+                    </div>
+                    <div class="form-group" id="excelexamupbox" style="display: none;">
+                        <label>请上传试题文档（excel文档）：</label>
+                        <span class="input-icon icon-right">
+                            <input type="hidden" name="excelexam" value="">
+                            <input id="excelexamfile" type="file" name="excelexamfile" placeholder="试题文档（excel文档）" class="file-loading">
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 发布 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<script>
+$(function (){
+//添加试题
+$("#newexambtn").on('click', function () {
+    $.post($(this).attr("href"), {}, function (data){
+        if (!data.error) {
+            $("#examboxpanel").html(data.data.html).show();
+        } else {
+            alertPanelShow(status, data.msg);
+        }
+    });
+    return false;
+});
+//删除试题
+$("a.exambtndel").on('click', function () {
+    $(this).parents(".examitem").remove();
+    //遍历 计算序号和排序位置
+    setTimeout(function (){
+        var no = 1;
+        $(".examitem").each(function (){
+            $(this).find("input.sortno").val(no);
+            $(this).find("span.no").html(no + '.');
+            no++;
+        });
+    }, 100);
+});
+
+//Form提交 保存试卷信息
+$("form[name=testingform]").submit(function (){
+    var url = $(this).attr('action');
+    var postdata = $(this).serialize();
+    $.post(url, postdata, function (data){
+        var status = data.error ? 'error' : 'success';
+        alertPanelShow(status, data.msg);
+        if (!data.error) {
+            var location_href = "";
+            if ("location" in data.data) {
+                location_href = data.data.location;
+            }
+            location.href = location_href ? location_href : location.href;
+        }
+    }, 'json');
+    return false;
+});
+});
+</script>
+
+<link href="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}js/bootstrap-fileinput.excelexam.js"></script>
+<script>
+$(function (){
+    //excelexambtn上传Form
+    $("a#excelexambtn").on('click', function (){
+        $("#excelexamupbox").slideToggle();
+    });
+
+    var BootstrapFileInputClassObj = new BootstrapFileInputClass();
+    //课程示例图
+    BootstrapFileInputClassObj.Init("excelexam", JS_APP+"?s=Testing/excelexam");
+});
+</script>
+{include file="Common/foot.html"}

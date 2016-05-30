@@ -1,0 +1,60 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        <div class="resumenav row">
+            <ul class="list-unstyled">
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="home"}active{/if}"><a href="{$ANY.__APP__}?s=User/home">个人资料</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="course"}active{/if}"><a href="{$ANY.__APP__}?s=User/course">学习经历</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="lvword"}active{/if}"><a href="{$ANY.__APP__}?s=User/lvword">反馈意见</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox maincontbox">
+        <div class="dataprofilecont">
+            <form name="dataform" method="post" action="javascript:;" class="dataform">
+                <div class="form-group row">
+                    <div class="col-xs-6 test-left">账号</div>
+                    <div class="col-xs-6 text-right val">{$userinfo.account}</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6 test-left">姓名</div>
+                    <div class="col-xs-6 text-right val">{$userinfo.username}</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6 test-left">部门</div>
+                    <div class="col-xs-6 text-right val">{$userinfo.department}</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6 test-left">职务</div>
+                    <div class="col-xs-6 text-right val">{$userinfo.position}</div>
+                </div>
+            </form>
+            <div class="examinfo">
+                <p><a href="{$ANY.__APP__}?s=User/chpasswd" class="btn btn-block btn-info"> 修改密码 </a></p>
+                <p><a href="{$ANY.__APP__}?s=User/logout" class="btn btn-block btn-red"> 退出登录 </a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+<style type="text/css" media="screen">
+.form-group {
+    padding: 15px 0;
+    border-bottom: 1px solid #AAAAAA;
+}
+.form-group .val {
+    color: #707478;
+}
+.examinfo {
+    padding-top: 20px;
+}
+</style>
+
+{include file="Common/foot.html"}

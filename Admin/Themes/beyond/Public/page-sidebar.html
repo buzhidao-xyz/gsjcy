@@ -1,0 +1,75 @@
+
+<!-- Page Sidebar -->
+<div class="page-sidebar" id="sidebar">
+    <!-- Page Sidebar Header-->
+    <div class="sidebar-header-wrapper">
+        <!-- <input type="text" class="searchinput" />
+        <i class="searchicon fa fa-search"></i>
+        <div class="searchhelper">综合搜索 告警、事件等</div> -->
+    </div>
+    <!-- /Page Sidebar Header -->
+
+    {if isset($managerinfo.access)&&is_array($managerinfo.access)&&!empty($managerinfo.access)}
+    <!-- Sidebar Menu -->
+    <ul class="nav sidebar-menu" style="overflow: auto;">
+        {foreach $managerinfo.access as $group}
+        <li class="{if isset($group.nodelist)&&is_array($group.nodelist)&&!empty($group.nodelist)}open{/if} {if (($SYSTEM_CONSTANT.CONTROLLER_NAME==$group.control)&&($SYSTEM_CONSTANT.ACTION_NAME==$group.action))||(isset($sidebar_active)&&$sidebar_active[0]==$group.control&&$sidebar_active[1]==$group.action)}active{/if}">
+            {if isset($group.nodelist)&&is_array($group.nodelist)&&!empty($group.nodelist)}
+            <a href="javascript:;" class="menu-dropdown">
+                <i class="menu-icon fa {$group.icon}"></i>
+                <span class="menu-text"> {$group.groupname} </span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                {foreach $group.nodelist as $ppnode}
+                <li class="{if (($SYSTEM_CONSTANT.CONTROLLER_NAME==$ppnode.control)&&($SYSTEM_CONSTANT.ACTION_NAME==$ppnode.action))||(isset($sidebar_active)&&$sidebar_active[0]==$ppnode.control&&$sidebar_active[1]==$ppnode.action)}active{/if}">
+                    {if isset($ppnode.nodelist)&&is_array($ppnode.nodelist)&&!empty($ppnode.nodelist)}
+                    <a href="javascript:;" class="menu-dropdown">
+                        <span class="menu-text"> {$ppnode.nodename} </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        {foreach $ppnode.nodelist as $pnode}
+                        <li class="{if (($SYSTEM_CONSTANT.CONTROLLER_NAME==$pnode.control)&&($SYSTEM_CONSTANT.ACTION_NAME==$pnode.action))||(isset($sidebar_active)&&$sidebar_active[0]==$pnode.control&&$sidebar_active[1]==$pnode.action)}active{/if}">
+                            {if isset($pnode.nodelist)&&is_array($pnode.nodelist)&&!empty($pnode.nodelist)}
+                            <a href="javascript:;" class="menu-dropdown">
+                                <span class="menu-text"> {$pnode.nodename} </span>
+                                <i class="menu-expand"></i>
+                            </a>
+                            <ul class="submenu">
+                                {foreach $pnode.nodelist as $node}
+                                <li class="{if (($SYSTEM_CONSTANT.CONTROLLER_NAME==$node.control)&&($SYSTEM_CONSTANT.ACTION_NAME==$node.action))||(isset($sidebar_active)&&$sidebar_active[0]==$node.control&&$sidebar_active[1]==$node.action)}active{/if}">
+                                    <a href="{$ANY.__APP__}?s={$node.control}/{$node.action}">
+                                        <span class="menu-text"> {$node.nodename} </span>
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ul>
+                            {else}
+                            <a href="{$ANY.__APP__}?s={$pnode.control}/{$pnode.action}">
+                                <span class="menu-text"> {$pnode.nodename} </span>
+                            </a>
+                            {/if}
+                        </li>
+                        {/foreach}
+                    </ul>
+                    {else}
+                    <a href="{$ANY.__APP__}?s={$ppnode.control}/{$ppnode.action}">
+                        <span class="menu-text"> {$ppnode.nodename} </span>
+                    </a>
+                    {/if}
+                </li>
+                {/foreach}
+            </ul>
+            {else}
+            <a href="{$ANY.__APP__}?s={$group.control}/{$group.action}">
+                <i class="menu-icon fa {$group.icon}"></i>
+                <span class="menu-text"> {$group.groupname} </span>
+            </a>
+            {/if}
+        </li>
+        {/foreach}
+    </ul>
+    {/if}
+</div>
+<!-- /Page Sidebar -->

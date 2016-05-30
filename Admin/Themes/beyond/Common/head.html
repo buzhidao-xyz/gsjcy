@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>管理系统 - 三星党建平台 - 三星党委党校</title>
+    <meta name="description" content="管理系统 - 三星党建平台 - 三星党委党校" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/favicon.ico" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <!-- <link id="beyond-link" href="#" rel="stylesheet" type="text/css" /> -->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/demo.min.css" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
+
+    <!--Page Related styles-->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <!-- bzd css -->
+    <link href="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/bzd.css" rel="stylesheet" />
+
+    <!-- JQuery -->
+    <script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/jquery/jquery-1.11.3.min.js"></script>
+    <script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/skins.min.js"></script>
+
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices) -->
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/pace/pace.min.js"></script>
+    <script type="text/javascript">
+    var JS_APP = '{$ANY.__APP__}';
+    
+    var JS_SERVER    = '{$SERVER.HOST.SOUND_SERVER}Themes/beyond/Assets/js/';
+    var CSS_SERVER   = '{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/css/';
+    var IMAGE_SERVER = '{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/img/';
+    </script>
+</head>
+<!-- /Head -->
+
+<!-- Body -->
+<body>
+    {include file="Public/alertpanel.html"}
+
+    {include file="Public/navbar.html"}
+
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+
+            <!-- page-sidebar -->
+            {include file="Public/page-sidebar.html"}

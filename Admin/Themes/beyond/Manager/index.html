@@ -1,0 +1,105 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">系统管理</a></li>
+            <li class="active">管理员</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>管理员</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Manager/index" class="btn btn-primary">管理员</a>
+            <a href="{$ANY.__APP__}?s=Manager/newmanager" class="btn btn-darkorange">新增管理员</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget tablebox">
+            <div class="widget-header bordered-bottom bordered-palegreen">
+                <span class="widget-caption">作业列表</span>
+                <div class="widget-buttons">
+                    <a href="#" data-toggle="maximize">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a href="#" data-toggle="collapse">
+                        <i class="fa fa-minus"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="widget-body no-padding">
+                <table id="searchable" class="table table-bordered table-hover table-striped">
+                    <thead class="bordered-darkorange">
+                        <tr role="row">
+                            <th>ID</th>
+                            <th>账号</th>
+                            <th>状态</th>
+                            <th>登录次数</th>
+                            <th>创建日期</th>
+                            <th>上次登录日期</th>
+                            <th>操作项</th>
+                        </tr>
+                    </thead>
+
+                    {if isset($datalist)&&is_array($datalist)&&!empty($datalist)}
+                    <tbody>
+                        {foreach $datalist as $d}
+                        <tr>
+                            <td>{$d.managerid}</td>
+                            <td>{$d.account}</td>
+                            <td>{if $d.status}<font color="green">已启用</font>{else}<font color="red">已禁用</font>{/if}</td>
+                            <td>{$d.loginnum}</td>
+                            <td>{'Y-m-d H:i:s'|date:{$d.createtime}}</td>
+                            <td>{'Y-m-d H:i:s'|date:{$d.lastlogintime}}</td>
+                            <td>
+                                <a href="{$ANY.__APP__}?s=Manager/profile&managerid={$d.managerid}" class="btn btn-sky">查看</a>
+                                {if $d.status}
+                                <a href="{$ANY.__APP__}?s=Manager/enable&managerid={$d.managerid}&status=0" class="btn btn-danger btnenable">禁用</a>
+                                {else}
+                                <a href="{$ANY.__APP__}?s=Manager/enable&managerid={$d.managerid}&status=1" class="btn btn-success btnenable">启用</a>
+                                {/if}
+                                <a href="{$ANY.__APP__}?s=Manager/managerdel&managerid={$d.managerid}" class="btn btn-danger btndelete">删除</a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    </tbody>
+                    {/if}
+                </table>
+                {include file="Public/pagination.html"}
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+{include file="Common/foot.html"}

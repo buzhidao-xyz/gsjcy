@@ -1,0 +1,52 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <div class="loginbox">
+        <h3 class="text-center">平台党员登录</h3>
+        <form name="LoginForm" action="{$ANY.__APP__}?s=User/logincheck" method="post" class="loginform ajaxform">
+            <div class="form-group center-block">
+                <!-- <label for="">账号</label> -->
+                <input type="text" name="account" class="form-control input-account" placeholder="账号">
+            </div>
+            <div class="form-group center-block">
+                <!-- <label for="">密码</label> -->
+                <input type="password" name="password" class="form-control input-password" placeholder="密码(注意字母区分大小写)">
+            </div>
+            <div class="form-group center-block">
+            </div>
+            <div class="form-group center-block" style="margin-top: 30px;">
+                <button class="btn btn-default btn-red btn-block" type="submit"> 登 录 </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- end #content -->
+
+<style type="text/css" media="screen">
+.loginbox {
+    display: block;
+    overflow: hidden;
+}
+.loginbox h3 {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+.loginbox .loginform .form-group {
+    width: 90%;
+}
+.loginbox .loginform .form-group input {
+    text-indent: 17px;
+    border-radius: 0;
+}
+.loginbox .loginform .form-group input.input-account {
+    background: url("{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/index_login_account_icon.jpg") no-repeat left #FFFFFF;
+}
+.loginbox .loginform .form-group input.input-password {
+    background: url("{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/index_login_password_icon.jpg") no-repeat left #FFFFFF;
+}
+</style>
+
+{include file="Common/foot.html"}

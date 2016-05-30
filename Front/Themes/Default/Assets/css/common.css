@@ -1,0 +1,665 @@
+/**
+ * 通用CSS样式
+ * buzhidao
+ * 2015-12-08
+ */
+
+/*content样式表*/
+.bannerpanel {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    background: #F5F6F7;
+    padding-top: 15px;
+    border-bottom: 3px solid #E1E1E1;
+}
+.bannerpanel .bannerbox {
+    float: left;
+    width: 700px;
+    height: 328px;
+    display: block;
+    overflow: hidden;
+}
+.bannerpanel .loginbox {
+    float: left;
+    width: 320px;
+    height: 328px;
+    padding: 0 30px;
+    display: block;
+    overflow: hidden;
+    margin-left: 0px;
+    border: 1px solid #E1E1E1;
+}
+.bannerpanel .loginbox h2.title {
+    /*color: #006965;*/
+    color: #CB1C1D;
+    font-family: "Microsoft YaHei";
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: left;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.bannerpanel .loginbox .form-group {
+    margin-bottom: 20px;
+}
+.bannerpanel .loginbox .form-group .form-control {
+    border-radius: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    line-height: 28px !important;
+    padding: 6px 30px;
+    padding-right: 5px;
+}
+.bannerpanel .loginbox .form-group input.input-account {
+    background: url("../images/index_login_account_icon.jpg") no-repeat left #FFFFFF;
+}
+.bannerpanel .loginbox .form-group input.input-password {
+    background: url("../images/index_login_password_icon.jpg") no-repeat left #FFFFFF;
+}
+.bannerpanel .loginbox .form-group .btn-login {
+    width: 100%;
+}
+.bannerpanel .loginbox .form-group a.qa {
+    color: #CB1C1D;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+.bannerpanel .caption {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    padding: 10px 40px;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+.bannerpanel .caption p {
+    margin-bottom: 0;
+}
+.bannerpanel .caption p.tongji {
+    float: left;
+    margin-top: 17px;
+}
+.bannerpanel .caption p.activitybanner {
+    float: right;
+}
+
+/*articles 样式表*/
+.articlepanel {
+    display: block;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.articlepanel .articlelistbox {
+    float: left;
+    width: 330px;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    margin-right: 30px;
+}
+.articlepanel .articlelistbox .title {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid #CB1C1D;
+    height: 49px;
+}
+.articlepanel .articlelistbox .title span {
+    position: absolute;
+    color: #cb1c1d;
+    float: left;
+    font-family: "Microsoft YaHei";
+    font-size: 23px;
+    font-weight: normal;
+    padding: 7px 0;
+    border-bottom: 2px solid #cb1c1d;
+}
+.articlepanel .articlelistbox .title a {
+    float: right;
+    font-size: 13px;
+    margin-top: 20px;
+}
+.articlepanel .articlelistbox .title a:hover {
+    
+}
+.articlepanel .articlelistbox ul.cont {
+    padding: 10px 0;
+}
+.articlepanel .articlelistbox ul.cont li {
+    display: block;
+    overflow: hidden;
+    padding: 12px 17px;
+    padding-right: 0;
+    background: url("../images/list_arrow_icon.png") no-repeat 3px;
+    border-bottom: 1px dashed #CCCCCC;
+}
+.articlepanel .articlelistbox ul.cont li a {
+    float: left;
+    display: block;
+    overflow: hidden;
+    color: #333333;
+    font-size: 15px;
+    height: 20px;
+    line-height: 20px;
+    width: 260px;
+}
+.articlepanel .articlelistbox ul.cont li a:hover {
+    color: #cb1c1d;
+    text-decoration: underline;
+}
+.articlepanel .articlelistbox ul.cont li span.time {
+    color: #999;
+    font-size: 14px;
+    float: right;
+}
+.articlepanel .qrcodebox {
+    float: left;
+    width: 300px;
+    height: auto;
+    display: block;
+    overflow: hidden;
+}
+.articlepanel .qrcodebox .title {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid #346f93;
+    height: 49px;
+}
+.articlepanel .qrcodebox .title a {
+    position: absolute;
+    color: #209583;
+    float: left;
+    font-family: "Microsoft YaHei";
+    font-size: 23px;
+    font-weight: normal;
+    padding: 7px 0;
+    border-bottom: 2px solid #209583;
+}
+.articlepanel .qrcodebox .title a:hover {
+    text-decoration: none;
+}
+.articlepanel .qrcodebox .cont {
+    width: 100%;
+    height: 336px;
+    margin-top: 10px;
+    /*background: #F5F6F7;*/
+}
+
+/*course样式表*/
+.datalistbox {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #E1E1E1;
+    border-top: 0;
+    border-bottom: 3px solid #E1E1E1;
+    padding: 30px;
+    min-height: 570px;
+}
+.datalistbox ul.listbox {
+    display: block;
+    overflow: hidden;
+    margin-left: 0;
+    padding-left: 0;
+}
+.datalistbox ul.listbox li {
+    display: block;
+    overflow: hidden;
+    padding: 25px 0;
+    border-bottom: 1px dashed #E1E1E1;
+}
+.datalistbox ul.listbox li a:hover {
+    color: #CB1C1D;
+}
+.datalistbox ul.listbox li a.btn-red:hover {
+    color: #FFFFFF;
+}
+.datalistbox ul.listbox li .img-logo {
+    float: left;
+    padding-left: 15px;
+}
+.datalistbox ul.listbox li .cont {
+    float: left;
+    margin-left: 30px;
+}
+.datalistbox ul.listbox li .cont a.title {
+    display: block;
+    font-size: 21px;
+    width: 470px;
+    height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.datalistbox ul.listbox li .cont .course_s_icon {
+    margin-top: 5px;
+}
+.datalistbox ul.listbox li .cont .tongji {
+    display: block;
+    float: right;
+    margin-top: 10px;
+    position: relative;
+    font-size: 14px;
+}
+.datalistbox ul.listbox li .ops {
+    float: right;
+    padding: 9px 15px;
+    padding-left: 0;
+    width: 230px;
+}
+.datalistbox ul.listbox li .ops a.btn-study {
+    width: 100%;
+    font-size: 14px;
+    border-radius: 1px;
+}
+.datalistbox ul.listbox li .ops p {
+    text-align: center;
+    padding: 15px 0 5px 0;
+    margin-bottom: 0;
+}
+.datalistbox ul.listbox li .ops p a {
+    margin: 0 10px;
+    color: #CB1C1D;
+    font-size: 14px;
+    text-decoration: underline;
+}
+.datalistbox ul.listbox li .ops p a.disabled {
+    color: #A1A1A1;
+}
+
+/*listnav样式*/
+.datalistbox ul.listnav {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    margin-left: -151px;
+    display: block;
+    overflow: hidden;
+}
+.datalistbox ul.listnav li {
+    display: block;
+    overflow: hidden;
+    list-style: none;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    margin-bottom: 5px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.datalistbox ul.listnav li a {
+    color: #979797;
+    font-size: 14px;
+    display: block;
+    padding-left: 15px;
+    background: #F1F1F1;
+}
+.datalistbox ul.listnav li a:hover {
+    color: #CB1C1D;
+    background: #E7E7E7;
+    text-decoration: none;
+}
+.datalistbox ul.listnav li.active a {
+    color: #FFFFFF;
+    background: #CB1C1D;
+}
+
+ul.testinglist {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 15px;
+    /*padding: 20px 15px;*/
+}
+ul.testinglist li {
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    overflow: hidden;
+    display: block;
+    padding: 0 25px;
+    padding-right: 10px;
+    border-bottom: 1px dashed #E1E1E1;
+    background: url("../images/icon_arrow_right.gif") no-repeat 10px center;
+}
+ul.testinglist li span {
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: auto;
+    font-size: 15px;
+    padding-right: 10px;
+}
+ul.testinglist li a {
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-right: 10px;
+    color: #348fe2;
+    font-size: 15px;
+}
+ul.testinglist li a.completed {
+    color: #CB1C1D;
+}
+ul.testinglist li a.name {
+    width: 557px;
+    margin-right: 50px;
+}
+ul.testinglist li a.name:hover {
+    color: #CB1C1D;
+}
+ul.testinglist li span.completed {
+    color: #CB1C1D;
+    padding-right: 20px;
+}
+ul.testinglist li span.uncompleted {
+    color: #A1A1A1;
+    padding-right: 20px;
+}
+ul.testinglist li a.oplink {
+    margin-top: 13px;
+    font-size: 15px;
+}
+
+/*worklist 样式*/
+ul.worklist {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 15px;
+    padding: 0 15px;
+}
+ul.worklist li {
+    width: 100%;
+    height: auto;
+    line-height: auto;
+    overflow: hidden;
+    display: block;
+    padding: 30px 0;
+    /*border-bottom: 1px dashed #E1E1E1;*/
+    background: url("../images/work_line_bg.png") no-repeat bottom;
+}
+ul.worklist li .no {
+    font-size: 23px;
+    font-weight: 700;
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 38px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 0 5px;
+    color: #CB1C1D;
+}
+ul.worklist li .workinfo {
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin: 0 10px;
+    width: 720px;
+    overflow: hidden;
+    border-left: 1px dashed #E1E1E1;
+}
+ul.worklist li .workinfo .titlebox {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px 0;
+    margin-left: 5px;
+    border-bottom: 1px dashed #E1E1E1;
+}
+ul.worklist li .workinfo .titlebox span.title {
+    float: left;
+    display: block;
+    overflow: hidden;
+    padding-left: 35px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333333;
+    background: url("../images/icon_flag.gif") no-repeat 15px center;
+    width: 550px;
+    height: 20px;
+    line-height: 20px;
+}
+ul.worklist li .workinfo .titlebox span.time {
+    float: right;
+    display: block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    padding-right: 5px;
+}
+ul.worklist li .workinfo .desc {
+    font-size: 14px;
+    padding: 5px 0 5px 20px;
+    text-indent: 28px;
+    min-height: 50px;
+    display: block;
+    overflow: hidden;
+}
+ul.worklist li .workinfo .sinfo {
+    margin-top: 3px;
+    margin-bottom: 7px;
+    padding: 0 20px;
+    padding-right: 0;
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    overflow: hidden;
+    font-size: 14px;
+    color: #333333;
+}
+ul.worklist li .workinfo .sinfo span.catalog {
+    float: left;
+}
+ul.worklist li .workinfo .sinfo span.catalog a {
+    color: #CB1C1D;
+    text-decoration: underline;
+}
+ul.worklist li .workinfo .sinfo span.time {
+    float: right;
+    display: block;
+    color: #CB1C1D;
+    font-size: 15px;
+    padding-right: 95px;
+}
+ul.worklist li .workinfo .clink {
+    padding: 0 20px;
+    padding-right: 0;
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    overflow: hidden;
+}
+ul.worklist li .ops {
+    float: right;
+    display: block;
+    overflow: hidden;
+    margin: 0 10px;
+    padding-top: 37px;
+}
+ul.worklist li .ops a {
+    width: 115px;
+}
+ul.worklist li .ops a.subreport {
+    color: #CB1C1D;
+    font-size: 15px;
+    text-decoration: underline;
+}
+ul.worklist li .markimg_uncomplete {
+    position: absolute;
+    background: rgba(0, 0, 0, 0) url("../images/icon_uncomplete.png") no-repeat scroll 0 0;
+    height: 38px;
+    width: 60px;
+    margin-top: 75px;
+    margin-left: 700px;
+}
+ul.worklist li .markimg_complete {
+    position: absolute;
+    background: rgba(0, 0, 0, 0) url("../images/icon_complete.png") no-repeat scroll 0 0;
+    height: 52px;
+    width: 96px;
+    margin-left: 685px;
+    margin-top: 65px;
+}
+
+/*profile page*/
+.dataprofilebox {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #E1E1E1;
+    border-top: 0;
+    border-bottom: 3px solid #E1E1E1;
+    padding: 30px;
+    min-height: 570px;
+}
+.dataprofilebox .errormsg {
+    font-size: 27px;
+    font-weight: 700;
+    color: #cb1c1d;
+    min-height: 550px;
+    line-height: 300px;
+}
+.dataprofilebox .dataprofiletitle {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.dataprofilebox .dataprofiletitle h2 {
+    padding-bottom: 10px;
+}
+.dataprofilebox .dataprofiletitle h2 a.wlink {
+    color: #333333;
+}
+.dataprofilebox .dataprofiletitle h2 a.wlink:hover {
+    color: #cb1c1d;
+}
+.dataprofilebox .dataprofiletitle h5 {
+    color: #999999;
+}
+.dataprofilebox .dataprofiletitle a.helppdf {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: 275px;
+}
+.dataprofilebox .dataprofiletitle span.score {
+    display: inline-block;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 237px;
+    font-size: 45px;
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont {
+    color: #333333;
+    font-size: 14px;
+    font-family: "宋体,Arial Narrow,arial,serif";
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.dataprofilebox .dataprofilecont .coursevideo {
+    padding-bottom: 30px;
+}
+.dataprofilebox .dataprofilecont .coursefunc {
+    padding: 15px 0;
+    border-top: 1px dashed #F1F1F1;
+}
+.dataprofilebox .dataprofilecont .coursefunc p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilelinks {
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+/*testing profile*/
+.dataprofilebox .dataprofilecont {
+    display: block;
+    overflow: hidden;
+    padding: 30px 35px;
+}
+.dataprofilebox .dataprofilecont ul.exambox {
+    display: block;
+    overflow: hidden;
+}
+.dataprofilebox .dataprofilecont ul.exambox li {
+    display: block;
+    overflow: hidden;
+    padding: 20px 0;
+    border-bottom: 1px dashed #E1E1E1;
+    color: #333333;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .examsubject {
+    float: left;
+    width: 750px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .examresult {
+    float: right;
+    width: 135px;
+    margin-top: 30px;
+    text-align: center;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question {
+    font-size: 17px;
+    font-weight: 700;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.no {
+    padding-right: 10px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.examtype {
+    float: right;
+    color: #337ab7;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.myoptions {
+    font-weight: 700;
+    padding: 0 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.right {
+    color: #5cb85c;
+}
+.dataprofilebox .dataprofilecont ul.exambox li p.question span.wrong {
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options {
+    display: block;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option {
+    font-size: 16px;
+    padding: 5px 12px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option label {
+    color: #333333;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .option span.optiont {
+    padding-right: 5px;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .right span {
+    font-weight: 700;
+    color: #5cb85c;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .options .wrong span {
+    font-weight: 700;
+    color: #CB1C1D;
+}
+.dataprofilebox .dataprofilecont ul.exambox li .answer {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5cb85c;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+.dataprofilebox .dataprofilecont .examinfo {
+    display: block;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.dataprofilebox .dataprofilecont .examinfo .info {
+    font-size: 15px;
+}

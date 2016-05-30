@@ -1,0 +1,145 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">作业管理</a></li>
+            <li class="active">平台作业</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>平台作业管理</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Work/index" class="btn btn-primary">作业管理</a>
+            <a href="{$ANY.__APP__}?s=Work/newwork" class="btn btn-darkorange">发布作业</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">发布平台作业</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" name="workform" method="post" action="{$ANY.__APP__}?s=Work/worksave" class="dataform">
+                    <input type="hidden" name="workid" value="{$workinfo.workid}">
+                    <div class="form-title"><b>基本信息</b></div>
+                    <div class="form-group">
+                        <label>作业标题：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="title" value="{$workinfo.title}" placeholder="作业标题" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>作业描述：</label>
+                        <span class="input-icon icon-right">
+                            <textarea name="desc" style="width: 100%; height: 100px;">{$workinfo.desc}</textarea>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>作业分类：</label>
+                        <span class="input-icon icon-right">
+                            <select name="classid" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择作业分类--- </option>
+                                {foreach $classlist as $d}
+                                <option value="{$d.id}" {if $workinfo.classid==$d.id}selected{/if}>{$d.name}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>作业类型：</label>
+                        <div class="control-group">
+                            {foreach $typelist as $d}
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="type" value="{$d.id}" {if $workinfo.type==$d.id}checked="checked"{/if}>
+                                    <span class="text">{$d.name} <font color="red">{$d.remark}</font></span>
+                                </label>
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                    <div id="coursebox" class="form-group" {if $workinfo.type==2}style="display: none;"{/if}>
+                        <label>选择课程：</label>
+                        <span class="input-icon icon-right">
+                            <select name="courseid" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择平台课程--- </option>
+                                {foreach $courselist as $d}
+                                <option value="{$d.courseid}" {if $workinfo.courseid==$d.courseid}selected{/if}>{$d.title}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 发布 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<script>
+$(function (){
+// 作业类型切换
+$("input[name=type]").click(function (){
+    var typeid = $(this).val();
+    if (typeid == 1) {
+        $("#coursebox").show();
+    } else {
+        $("#coursebox").hide();
+    }
+});
+
+//Form提交 保存信息
+$("form[name=workform]").submit(function (){
+    var url = $(this).attr('action');
+    var postdata = $(this).serialize();
+    $.post(url, postdata, function (data){
+        var status = data.error ? 'error' : 'success';
+        alertPanelShow(status, data.msg);
+        if (!data.error) {
+            var location_href = "";
+            if ("location" in data.data) {
+                location_href = data.data.location;
+            }
+            location.href = location_href ? location_href : location.href;
+        }
+    }, 'json');
+    return false;
+});
+});
+</script>
+{include file="Common/foot.html"}

@@ -1,0 +1,50 @@
+<!-- begin #header -->
+<div id="header" class="header">
+    <div class="maincontbox">
+        <!-- <div class="logodj">
+            <a href="{$ANY.__APP__}?s=Index/index" class="logodj_img">
+                <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/logodj.png">
+            </a>
+        </div> -->
+        <div class="logo">
+            <a href="{$ANY.__APP__}?s=Index/index" class="logo_img" style="width: auto; padding-top: 5px; display: block;">
+                <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/logo.png">
+                <!-- <span>三星半导体党委党校</span> -->
+            </a>
+        </div>
+        <div class="header-nav">
+            {if isset($userinfo)&&!empty($userinfo)&&$userinfo.userid}
+            <ul class="list-unstyled">
+                <li><a href="{$ANY.__APP__}?s=Index/index" {if isset($navflag)&&$navflag=='Index'}class="now"{/if}>首页</a></li>
+                <li><a href="{$ANY.__APP__}?s=Course/index" {if isset($navflag)&&$navflag=='Course'}class="now"{/if}>课程中心</a></li>
+                <li><a href="{$ANY.__APP__}?s=Testing/index" {if isset($navflag)&&$navflag=='Testing'}class="now"{/if}>随堂测评</a></li>
+                <li><a href="{$ANY.__APP__}?s=Work/index" {if isset($navflag)&&$navflag=='Work'}class="now"{/if}>我的作业({$undoneworknum})</a></li>
+            </ul>
+            {else}
+            <div id="Headernavnotice" class="notice">
+                <h3 style="display: block;">人才聚合 与企共融 树立非公党建第一品牌</h3>
+                <h3>聚焦正能量 实现国优梦 全面深化三星模式党建</h3>
+                <h3>学党章党规 学系列讲话 做合格党员</h3>
+                <!-- <h4>聚焦正能量 实现国优梦 全面深化三星模式党建</h4> -->
+            </div>
+            {/if}
+        </div>
+    </div>
+    <div class="logodj" style="float: right; position: absolute; margin-top: -95px; right: 10px;">
+        <a href="{$ANY.__APP__}?s=Index/index" class="logodj_img">
+            <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/logodj.png">
+        </a>
+    </div>
+</div>
+<!-- end #header -->
+<script type="text/javascript">
+$(function (){
+    var headernavnoticen = 1;
+    setInterval(function (){
+        $("#Headernavnotice h3").hide();
+        $("#Headernavnotice h3:eq("+headernavnoticen+")").fadeIn(500);
+        headernavnoticen++;
+        if (headernavnoticen>=3) headernavnoticen = 0;
+    }, 5000);
+})
+</script>

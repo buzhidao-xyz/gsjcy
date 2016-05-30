@@ -1,0 +1,135 @@
+{
+  "title": {
+    "text": "动态数据",
+    "subtext": "纯属虚构"
+  },
+  "tooltip": {
+    "trigger": "axis"
+  },
+  "legend": {
+    "data": [
+      "最新成交价",
+      "预购队列"
+    ]
+  },
+  "toolbox": {
+    "show": true,
+    "feature": {
+      "mark": {
+        "show": true
+      },
+      "dataView": {
+        "show": true,
+        "readOnly": false
+      },
+      "magicType": {
+        "show": true,
+        "type": [
+          "line",
+          "bar"
+        ]
+      },
+      "restore": {
+        "show": true
+      },
+      "saveAsImage": {
+        "show": true
+      }
+    }
+  },
+  "dataZoom": {
+    "show": false,
+    "start": 0,
+    "end": 100
+  },
+  "xAxis": [
+    {
+      "type": "category",
+      "boundaryGap": true,
+      "data": [
+        "6:57:40",
+        "6:57:42",
+        "6:57:44",
+        "6:57:46",
+        "6:57:48",
+        "6:57:50",
+        "6:57:52",
+        "6:57:54",
+        "6:57:56",
+        "6:57:58"
+      ]
+    },
+    {
+      "type": "category",
+      "boundaryGap": true,
+      "data": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    }
+  ],
+  "yAxis": [
+    {
+      "type": "value",
+      "scale": true,
+      "name": "价格",
+      "boundaryGap": [
+        0.2,
+        0.2
+      ]
+    },
+    {
+      "type": "value",
+      "scale": true,
+      "name": "预购量",
+      "boundaryGap": [
+        0.2,
+        0.2
+      ]
+    }
+  ],
+  "series": [
+    {
+      "name": "预购队列",
+      "type": "bar",
+      "xAxisIndex": 1,
+      "yAxisIndex": 1,
+      "data": [
+        541,
+        570,
+        979,
+        798,
+        935,
+        300,
+        360,
+        370,
+        307,
+        212
+      ]
+    },
+    {
+      "name": "最新成交价",
+      "type": "line",
+      "data": [
+        11,
+        6.8,
+        7.9,
+        9.4,
+        6.6,
+        11.6,
+        13.4,
+        9.7,
+        12.9,
+        10.6
+      ]
+    }
+  ]
+}

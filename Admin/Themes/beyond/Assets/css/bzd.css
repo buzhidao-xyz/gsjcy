@@ -1,0 +1,107 @@
+/**
+ * MY CSS
+ * buzhidao
+ * 2015-12-09
+ */
+
+/*base基础样式*/
+.page-header .inops-buttons {
+	float: right;
+	margin-top: 5px;
+	margin-right: 150px;
+}
+.page-sidebar .sidebar-menu .submenu li {
+    border-left: 3px solid #FFF;
+}
+/*btn按钮样式*/
+.btn.btn-red {
+    background: #CB1C1D none repeat scroll 0 0;
+    border-color: #CB1C1D;
+    color: #fff;
+    border-radius: 0;
+    font-size: 13px;
+}
+.btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active, .open .dropdown-toggle.btn-red {
+    background: #a71011 none repeat scroll 0 0;
+    border-color: #a71011;
+}
+
+/**common通用样式**/
+.m-b-3 {
+	margin-bottom: 3px;
+}
+.m-b-5 {
+    margin-bottom: 5px;
+}
+.m-b-10 {
+    margin-bottom: 10px;
+}
+.m-b-15 {
+	margin-bottom: 15px;
+}
+.m-t-2 {
+    margin-top: 2px;
+}
+.m-t-5 {
+    margin-top: 5px;
+}
+.m-t-130 {
+	margin-top: 130px;
+}
+.m-t-150 {
+	margin-top: 150px;
+}
+.m-l-5 {
+    margin-left: 5px;
+}
+.m-l-10 {
+    margin-left: 10px;
+}
+.m-r-5 {
+    margin-right: 5px;
+}
+.m-r-10 {
+    margin-right: 10px;
+}
+
+/*dashbaord样式表*/
+.dashboard {
+
+}
+
+/**exambox试卷样式表**/
+.examlistbox {
+    display: block;
+    overflow: hidden;
+}
+.examlistbox .examitem {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.examlistbox .examitem .title {
+    font-weight: 700;
+}
+.examlistbox .examitem .title .type {
+    float: right;
+}
+.examlistbox .examitem .title .score {
+    float: right;
+}
+.examlistbox .examitem .title .score input {
+    width: 50px;
+    text-align: center;
+}
+.examlistbox .examitem .title .score a.exambtndel {
+    color: #CB1C1D;
+    text-decoration: underline;
+}
+.examlistbox .examitem .title .answer {
+    color: #53a93f;
+}
+.examlistbox .examitem .title .single {
+    color: #11a9cc;
+}
+.examlistbox .examitem .title .multiple {
+    color: #ed4e2a;
+}

@@ -1,0 +1,13 @@
+<!-- begin resumebox -->
+<div id="ResumeBox" class="resumebox">
+    <div class="resumenav maincontbox">
+        <ul class="list-unstyled">
+            <li {if isset($resumenavflag)&&$resumenavflag=="news"}class="active"{/if}><a href="{$ANY.__APP__}?s=Article/news">党建新闻</a></li>
+            <li {if isset($resumenavflag)&&$resumenavflag=="notice"}class="active"{/if}><a href="{$ANY.__APP__}?s=Article/notice">平台公告</a></li>
+            <li {if isset($resumenavflag)&&$resumenavflag=="qa"}class="active"{/if}><a href="{$ANY.__APP__}?s=Help/qa">常见问题</a></li>
+        </ul>
+        <div class="links">
+            <a href="{$ANY.__APP__}">返回平台首页</a>
+        </div>
+    </div>
+</div>

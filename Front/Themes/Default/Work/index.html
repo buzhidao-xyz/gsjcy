@@ -1,0 +1,129 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        <div class="maincontbox">
+            <div class="resume resume-work">
+                <span class="title">我的作业：</span>
+                <span class="content">已完成 <font color="#ec971f" size="5">{$userworkinfo.total.workdonenum}</font> 篇</span>
+                <span class="content">未完成 <font color="#ec971f" size="5">{$userworkinfo.total.worknonenum}</font> 篇</span>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{$userworkinfo.total.workpercent}" aria-valuemin="0" aria-valuemax="100" style="width: {$userworkinfo.total.workpercent}%;">{$userworkinfo.total.workpercent}%</div>
+                </div>
+            </div>
+            <div class="links">
+                <a href="{$ANY.__APP__}?s=Help/qa">如何完成作业？</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox testingbox maincontbox">
+        <!-- listnav -->
+        <ul id="listnav" class="listnav list-unstyled">
+            {foreach $workclass as $class}
+            <li class="item {if isset($classid)&&$classid==$class.id}active{/if}"><a href="{$ANY.__APP__}?s=Work/index&classid={$class.id}">{$class.name}</a></li>
+            {/foreach}
+        </ul>
+        <script src="{$SERVER.HOST.PUBLIC_SERVER}js/jquery-scrolltofixed-min.js"></script>
+        <script>
+            $('#listnav').scrollToFixed({
+                marginTop: 70
+            });
+        </script>
+
+        <!-- upload -->
+        <div id="workfilepanel" style="display: none;">
+            <form role="form" name="workfileform" method="post" action="{$ANY.__APP__}?s=Work/workfileupload">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" name="workid" value="0">
+                            <input type="file" name="workfile" placeholder="作业报告（word文档）">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- worklist -->
+        <ul class="worklist list-unstyled">
+            {if isset($worklist)&&is_array($worklist)&&!empty($worklist)}
+            {foreach $worklist as $workinfo}
+            <li>
+                <div class="no">{$workinfo.workid}</div>
+                <div class="workinfo">
+                    <div class="titlebox clearfix">
+                        <span class="title">{$workinfo.title}</span>
+                        <span class="time">布置时间：{'Y-m-d'|date:{$workinfo.createtime}}</span>
+                    </div>
+                    <div class="desc">{$workinfo.desc}</div>
+                    <div class="sinfo">
+                        <span class="catalog">作业类别：<a href="javascript:;">{$workclass[$workinfo.type]['name']}</a></span>
+                        {if $workinfo.status}<span class="time">{'Y-m-d'|date:{$workinfo.createtime}}</span>{/if}
+                    </div>
+                    <div class="clink">
+                        {if $workinfo.type==1}
+                        对应课程：<a href="{$ANY.__APP__}?s=Course/profile&courseid={$workinfo.courseid}&classid={$workinfo.courseclass}" target="_blank">{$workinfo.coursetitle}</a>
+                        {else}
+                        对应课程：<a href="javascript:;" target="_blank">无</a>【请上传报告】
+                        {/if}
+                    </div>
+                </div>
+                <div class="ops">
+                    {if $workinfo.status}
+                        {if $workinfo.type==1}
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$workinfo.courseid}&classid={$workinfo.courseclass}" class="btn btn-primary">查看作业</a>
+                        {else}
+                        <a href="{$SERVER.HOST.HTTP_HOST}{$workinfo.savepath}{$workinfo.savename}" target="_blank" class="btn btn-primary">查看作业</a>
+                        {/if}
+                    {else}
+                        {if $workinfo.type==1}
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$workinfo.courseid}&classid={$workinfo.courseclass}" class="btn btn-red">马上去完成</a>
+                        {else}
+                        <a href="javascript:;" class="btn btn-red workfilebtn" workid="{$workinfo.workid}">马上去完成</a>
+                        <p class="text-center m-t-5"><a href="javascript:;" class="subreport workfilebtn" workid="{$workinfo.workid}">提交报告</a></p>
+                        {/if}
+                    {/if}
+                </div>
+                {if $workinfo.status}
+                <div class="markimg_complete"></div>
+                {else}
+                <div class="markimg_uncomplete"></div>
+                {/if}
+            </li>
+            {/foreach}
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<!-- end #content -->
+
+<script src="{$SERVER.HOST.PUBLIC_SERVER}js/jquery.form.js"></script>
+<script>
+$(function (){
+    //选择文件
+    $("a.workfilebtn").on('click', function (){
+        $("form[name=workfileform]").find("input[name=workid]").val($(this).attr('workid'));
+        $("form[name=workfileform]").find("input[name=workfile]").click();
+    });
+    //上传文件
+    $("form[name=workfileform]").find("input[name=workfile]").on('change', function (){
+        $("form[name=workfileform]").ajaxSubmit(function (data){
+            alert(data.msg);
+            if (!data.error) {
+                location.href = location.href;
+            }
+        });
+    });
+})
+</script>
+
+{include file="Common/foot.html"}

@@ -1,0 +1,76 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Course/resumebox.html"}
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox coursebox maincontbox">
+        <!-- listnav -->
+        <ul id="listnav" class="listnav list-unstyled">
+            {foreach $courseclass as $class}
+            <li class="item {if isset($classid)&&$classid==$class.id}active{/if}"><a href="{$ANY.__APP__}?s=Course/index&classid={$class.id}">{$class.name}</a></li>
+            {/foreach}
+        </ul>
+        <script src="{$SERVER.HOST.PUBLIC_SERVER}js/jquery-scrolltofixed-min.js"></script>
+        <script>
+            $('#listnav').scrollToFixed({
+                marginTop: 70
+            });
+        </script>
+
+        <!-- listbox -->
+        <ul class="listbox">
+            {if isset($courselist)&&is_array($courselist)&&!empty($courselist)}
+            {foreach $courselist as $courseinfo}
+            <li>
+                <div class="img-logo">
+                    <img src="{$SERVER.HOST.HTTP_HOST}{$courseinfo.showimg}" class="img-responsive img-rounded center-block" style="width: 180px; height: 90px;">
+                </div>
+                <div class="cont">
+                    <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" title="{$courseinfo.title}" class="title">{$courseinfo.title}</a>
+                    {if $courseinfo.status}
+                    <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/course_s_done_icon.png" class="course_s_icon">
+                    {else}
+                    <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/Default/Assets/images/course_s_none_icon.png" class="course_s_icon">
+                    {/if}
+                    <span class="tongji">已有 <font color="#CB1C1D" size="5">{$courseinfo.learnnum}</font> 位党员参加学习</span>
+                </div>
+                <div class="ops">
+                    {if $courseinfo.status}
+                    <a href="javascript:;" class="btn btn-default btn-study disabled">已学习</a>
+                    {else}
+                    {if $courseinfo.courseid==$clearncourseid}
+                    <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-default btn-study btn-red">马上去学习</a>
+                    {else}
+                    <a href="javascript:;" class="btn btn-default btn-study btn-red disabled" disabled>马上去学习</a>
+                    {/if}
+                    {/if}
+                    <p>
+                        {if $courseinfo.status==1}
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}">再次学习</a>
+                        <a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}">完成随堂测评</a>
+                        {else if $courseinfo.status==2}
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}">再次学习</a>
+                        <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="" style="color: #337ab7;">随堂测评成绩</a>
+                        {else}
+                        <a href="javascript:;" class="disabled" disabled>完成随堂测评</a>
+                        {/if}
+                    </p>
+                </div>
+            </li>
+            {/foreach}
+            {else}
+            <p><h3 class="text-center">暂无课程</h3></p>
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

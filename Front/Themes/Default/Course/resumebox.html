@@ -1,0 +1,16 @@
+<!-- begin resumebox -->
+<div id="ResumeBox" class="resumebox">
+    <div class="maincontbox">
+        <div class="resume">
+            <span class="title">我的课程：</span>
+            <span class="content">已学习 <font color="#CB1C1D" size="5">{$usercourseinfo.total.courselearnnum}</font> 课</span>
+            <span class="content">未学习 <font color="#CB1C1D" size="5">{$usercourseinfo.total.coursenonenum}</font> 课</span>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{$usercourseinfo.total.percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$usercourseinfo.total.percent}%;">{$usercourseinfo.total.percent}%</div>
+            </div>
+        </div>
+        <div class="links">
+            <a href="{$ANY.__APP__}?s=Help/qa">如何完成学习？</a>
+        </div>
+    </div>
+</div>

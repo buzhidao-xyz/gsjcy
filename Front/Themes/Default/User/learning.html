@@ -1,0 +1,100 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        <div class="resumenav maincontbox">
+            <ul class="list-unstyled">
+                <li class="active"><a href="{$ANY.__APP__}?s=User/learning">学习达人</a></li>
+                <li><a href="{$ANY.__APP__}?s=User/zbxx">支部学习管理</a></li>
+            </ul>
+            <div class="links">
+                <a href="{$ANY.__APP__}">返回平台首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- begin homebox -->
+    <div class="maincontbox homebox">
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+                <table class="table learningbox">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>党员名称</th>
+                            <th>已学习课程</th>
+                            <th>已完成测评</th>
+                            <th>累计得分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {if isset($userlearninglist)&&is_array($userlearninglist)&&!empty($userlearninglist)}
+                        {foreach $userlearninglist as $userlearning}
+                        <tr>
+                            <td><span class="no no{$userlearning.no}">{$userlearning.no}</span></td>
+                            <td>{$userlearning.username}</td>
+                            <td>{$userlearning.coursenum}</td>
+                            <td>{$userlearning.testingnum}</td>
+                            <td>{$userlearning.avgscore}</td>
+                        </tr>
+                        {/foreach}
+                        {/if}
+                        <tr><td colspan="5"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+
+<style type="text/css" media="screen">
+.learningbox {
+    font-size: 15px;
+}
+.learningbox thead {
+    text-align: center;
+    background: #FEFEFE;
+}
+.learningbox thead tr th {
+    text-align: center;
+    border-bottom: 2px solid #CB1C1D !important;
+}
+.learningbox tbody tr {
+    text-align: center;
+}
+.learningbox tbody tr td {
+    padding: 15px;
+    color: #373737;
+}
+span.no {
+    display: inline-block;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+span.no1 {
+    color: #F1F1F1;
+    background: #CB1C1D;
+    border-radius: 5px;
+}
+span.no2 {
+    color: #F1F1F1;
+    background: #FDE100;
+    border-radius: 5px;
+}
+span.no3 {
+    color: #F1F1F1;
+    background: #06a7e1;
+    border-radius: 5px;
+}
+</style>
+
+{include file="Common/foot.html"}

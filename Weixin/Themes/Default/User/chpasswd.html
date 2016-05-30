@@ -1,0 +1,44 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        <div class="resumenav row">
+            <ul class="list-unstyled">
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="home"}active{/if}"><a href="{$ANY.__APP__}?s=User/home">个人资料</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="course"}active{/if}"><a href="{$ANY.__APP__}?s=User/course">学习经历</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="lvword"}active{/if}"><a href="{$ANY.__APP__}?s=User/lvword">反馈意见</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox maincontbox">
+        <div class="dataprofilecont">
+            <h4 class="text-center p-t-10 p-b-10">登录密码修改</h4>
+            <form name="PasswdForm" action="{$ANY.__APP__}?s=User/chpasswddo" method="post" class="ajaxform">
+                <div class="form-group center-block">
+                    <input type="password" name="password0" class="form-control input-account" placeholder="原密码">
+                </div>
+                <div class="form-group center-block">
+                    <input type="password" name="password" class="form-control input-password" placeholder="新密码（字母数字下划线5-20位）">
+                </div>
+                <div class="form-group center-block">
+                    <input type="password" name="password1" class="form-control input-password" placeholder="确认密码（字母数字下划线5-20位）">
+                </div>
+                <div class="form-group center-block" style="margin-top: 30px;">
+                    <button class="btn btn-default btn-red btn-block" type="submit"> 确 定 </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+<style type="text/css" media="screen">
+
+</style>
+
+{include file="Common/foot.html"}

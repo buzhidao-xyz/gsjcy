@@ -1,0 +1,51 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Public/resumenav.html"}
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox testingbox maincontbox">
+        <!-- arclist -->
+        {if isset($qalist)&&is_array($qalist)&&!empty($qalist)}
+        <ul id="Qalist" class="arclist list-unstyled qalist">
+            {foreach $qalist as $qainfo}
+            <li>
+                <div class="cont">
+                    <p class="title">
+                        <span class="no">{$qainfo.qaid}</span>
+                        <a href="javascript:;" title="{$qainfo.title}">{$qainfo.title}</a>
+                    </p>
+                </div>
+                <div class="arccontent">
+                    {$qainfo.answer|html_entity_decode}
+                </div>
+            </li>
+            {/foreach}
+        </ul>
+        {else}
+        <h3 class="text-center">暂无常见问题</h3>
+        {/if}
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<script type="text/javascript">
+$(function (){
+    $("#Qalist li p.title").on('click', function (){
+        var that = $(this).parent().next(".arccontent");
+        if (that.css('display') == "none") {
+            $(this).addClass("expand");
+        } else {
+            $(this).removeClass("expand");
+        }
+        that.slideToggle(300);
+    });
+})
+</script>
+<!-- end #content -->
+{include file="Common/foot.html"}

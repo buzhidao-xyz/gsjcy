@@ -1,0 +1,332 @@
+/**
+ * 基础CSS样式表
+ * buzhidao
+ * 2015-12-08
+ */
+html {
+    font-family: "微软雅黑";
+}
+body {
+    font-family: "微软雅黑";
+}
+div {
+
+}
+table {
+
+}
+ul {
+
+}
+ul li {
+
+}
+input {
+
+}
+h1, h2, h3, h4, h5 {
+
+}
+
+a:hover {
+    color: #CB1C1D;
+}
+
+/*pace.js样式*/
+.pace .pace-activity {
+    display: none;
+}
+
+.btn.btn-red {
+    background: #CB1C1D none repeat scroll 0 0;
+    border-color: #CB1C1D;
+    color: #fff;
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 23px;
+}
+.btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active, .open .dropdown-toggle.btn-red {
+    background: #a71011 none repeat scroll 0 0;
+    border-color: #a71011;
+}
+.btn.btn-info {
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 23px;
+}
+.btn.btn-primary {
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.form-control:focus {
+    border-color: #CB1C1D;
+}
+
+/*content样式*/
+.content {
+    margin: 0;
+    padding: 0;
+}
+
+.maincontbox {
+    width: 1020px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+}
+
+/*Toper样式*/
+.toper {
+    position: fixed;
+    width: 100%;
+    height: 36px;
+    background: #EFEFEF;
+    z-index: 99999;
+}
+.toper .title {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: #88673e;
+}
+.toper .links {
+    float: right;
+    height: 36px;
+    line-height: 36px;
+}
+.toper .links a {
+    color: #88673e;
+    font-size: 14px;
+}
+.toper .links a.logout {
+    color: #CB1C1D;
+}
+.toper .links span {
+    color: #88673e;
+    font-size: 14px;
+}
+.topervisiblebox {
+    width: 100%;
+    height: 36px;
+}
+
+/*header样式*/
+.header {
+    width: 100%;
+    height: 96px;
+    background: #CB1C1D;
+}
+.header .logodj {
+    float: left;
+}
+.header .logodj .logodj_img {
+    display: block;
+    width: 75px;
+    height: 75px;
+    margin-top: 10px;
+    margin-right: 10px;
+    /*background: rgba(0, 0, 0, 0) url("../images/logodj.png") no-repeat scroll;*/
+}
+.header .logo {
+    float: left;
+}
+.header .logo a.logo_img {
+    /*background: rgba(0, 0, 0, 0) url("../images/logo.png") no-repeat scroll 0 0 / 175px;*/
+    display: block;
+    overflow: hidden;
+    width: 175px;
+    height: auto;
+    padding-top: 25px;
+    color: #FFFFFF;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+.header .logo a.logo_img:hover {
+    text-decoration: none;
+}
+.header .header-nav {
+    float: right;
+    width: 750px;
+    font-size: 19px;
+    color: #FFFFFF;
+    height: 96px;
+    line-height: 96px;
+    letter-spacing: 10px;
+}
+.header .header-nav .notice {
+    text-align: center;
+    color: #FFFFFF;
+}
+.header .header-nav .notice h3 {
+    display: none;
+    color: #FFFFFF;
+    font-size: 25px;
+    margin-top: 36px;
+}
+.header .header-nav .notice h4 {
+    color: #FFFFFF;
+    font-size: 17px;
+}
+.header .header-nav ul {
+    float: right;
+    display: block;
+    overflow: hidden;
+}
+.header .header-nav ul li {
+    float: left;
+}
+.header .header-nav ul li a {
+    font-size: 17px;
+    letter-spacing: 1px;
+    padding: 10px 23px;
+    margin: 0 5px;
+    color: #FFFFFF;
+}
+.header .header-nav ul li a:hover {
+    color: #fff67f;
+    background: #a71011;
+    border-radius: 1px;
+    text-decoration: none;
+}
+.header .header-nav ul li a.now {
+    color: #fff67f;
+    background: #a71011;
+    border-radius: 1px;
+}
+
+/*footer样式表*/
+.footer {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    margin-top: 30px;
+    border-top: 10px solid #CB1C1D;
+    background: #F5F6F7;
+    padding: 30px 0;
+    color: #333333;
+    font-size: 13px;
+}
+.footer .company {
+    text-align: center;
+}
+.footer .company span {
+    font-weight: 600;
+    padding: 5px 15px;
+}
+.footer .contact {
+    padding-top: 10px;
+}
+.footer .copyright {
+    padding-top: 10px;
+}
+
+/*Resume样式表*/
+.resumebox {
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+    display: block;
+    overflow: hidden;
+    background: #F5F6F7;
+    border-bottom: 3px solid #e1e1e1;
+    font-size: 15px;
+}
+.resumebox .resume {
+    float: left;
+}
+.resumebox .resume span.title {
+    font-weight: 600;
+}
+.resumebox .resume span.content {
+    margin-right: 15px;
+}
+.resumebox .resume .progress {
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+.resumebox .resume .progress .progress-bar {
+    background: #CB1C1D;
+}
+.resumebox .links {
+    float: right;
+    padding-top: 21px;
+}
+.resumebox .resume-testing .progress .progress-bar {
+    background: #348fe2;
+}
+.resumebox .resume-work .progress .progress-bar {
+    background: #ec971f;
+}
+
+/*resumenav样式*/
+.resumenav {
+    display: block;
+    overflow: hidden;
+}
+.resumenav ul {
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.resumenav ul li {
+    float: left;
+    display: block;
+    overflow: hidden;
+}
+.resumenav ul li a {
+    display: block;
+    overflow: hidden;
+    float: left;
+    width: auto;
+    height: 59px;
+    line-height: 50px;
+    font-size: 19px;
+    text-align: center;
+    padding: 0 17px;
+    margin: 0 10px;
+    font-weight: 600;
+    color: #88673e;
+    border-bottom: 3px solid #E5E5E5;
+}
+.resumenav ul li a:hover {
+    text-decoration: none;
+    color: #CB1C1D;
+    border-bottom: 3px solid #CB1C1D;
+}
+.resumenav ul li.active a {
+    text-decoration: none;
+    color: #CB1C1D;
+    border-bottom: 3px solid #CB1C1D;
+}
+
+/*pagination样式表*/
+.pagination {
+    float: right;
+}
+.pagination > li > a {
+    border-radius: 1px !important;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background: #CB1C1D none repeat scroll 0 0 !important;
+    border-color: #CB1C1D !important;
+}
+.pager li > a, .pager li > span, .pagination > li > a {
+    border-color: #E1E1E1;
+}
+.pager li > a:hover, 
+.pager li > a:focus, 
+.pager li > span:hover,
+.pager li > span:focus,
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+    color: #CB1C1D;
+    background: #F1F1F1;
+    border-color: #CB1C1D;
+}

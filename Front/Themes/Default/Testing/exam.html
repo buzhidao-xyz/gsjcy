@@ -1,0 +1,81 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Testing/resumebox.html"}
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox testingbox maincontbox">
+        {if isset($errormsg)&&$errormsg}
+        <div class="errormsg text-center">{$errormsg}</div>
+        {else}
+        <div class="dataprofiletitle text-center">
+            <h2><a href="{$ANY.__APP__}?s=Course/profile&courseid={$testinginfo.courseid}&classid={$testinginfo.classid}" class="wlink" target="_blank">{$testinginfo.title}</a></h2>
+            <h5>{'Y年m月d日 h:i'|date:{$testinginfo.createtime}}</h5>
+            <h3><font color="#CB1C1D">本课随堂测评试卷</font><a href="{if isset($testinginfo.reviewinfo.savename)}{$SERVER.HOST.HTTP_HOST}{$testinginfo.reviewinfo.savepath}{$testinginfo.reviewinfo.savename}{else}javascript:;{/if}" id="ExamBtn" class="btn btn-info helppdf" target="_blank"> 先去复习 </a></h3>
+        </div>
+        <div class="dataprofilecont">
+            <form name="examform" method="post" action="{$ANY.__APP__}?s=Testing/check" class="dataform">
+            <input type="hidden" name="testingid" value="{$testinginfo.testingid}">
+            <ul class="list-unstyled exambox">
+                {foreach $testinginfo.exams as $examinfo}
+                <li>
+                    <div class="examsubject">
+                        <p class="question">
+                            <span class="no">{$examinfo.sortno}.</span>{$examinfo.title}<span class="examtype">{if $examinfo.type == 1}【单选】{else}【多选】{/if}</span>
+                        </p>
+                        <div class="options row">
+                            {foreach $examinfo.options as $option}
+                            <div class="option col-xs-6">
+                                <label>
+                                    {if $examinfo.type == 1}
+                                    <input type="radio" name="exams[{$examinfo.examid}]" value="{$option.name}">
+                                    {else}
+                                    <input type="checkbox" name="exams[{$examinfo.examid}][]" value="{$option.name}">
+                                    {/if}
+                                    <span class="optiont">{$option.name}.</span><span class="optionc">{$option.title}</span>
+                                </label>
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                </li>
+                {/foreach}
+            </ul>
+            <div class="examinfo row">
+                <div class="col-xs-6 text-left">
+                    <p><a href="{if isset($testinginfo.reviewinfo.savename)}{$SERVER.HOST.HTTP_HOST}{$testinginfo.reviewinfo.savepath}{$testinginfo.reviewinfo.savename}{else}javascript:;{/if}" id="ExamBtn" class="btn btn-info" target="_blank"> 复习资料 </a></p>
+                </div>
+                <div class="col-xs-6 text-right info">
+                    <p><button type="submit" id="SubBtn" class="btn btn-red"> 提交答案 </button></p>
+                </div>
+            </div>
+            </form>
+        </div>
+        {/if}
+        <div class="dataprofilelinks">
+            <p class="linkitem">
+                <span><b>上一课测评：&nbsp;</b></span>
+                {if is_array($testingprevnextinfo.prev)&&!empty($testingprevnextinfo.prev)}
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testingprevnextinfo.prev.testingid}&classid={$testinginfo.classid}">{$testingprevnextinfo.prev.title}</a>
+                {else}
+                无
+                {/if}
+            </p>
+            <p class="linkitem">
+                <span><b>下一课测评：&nbsp;</b></span>
+                {if is_array($testingprevnextinfo.next)&&!empty($testingprevnextinfo.next)}
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testingprevnextinfo.next.testingid}&classid={$testinginfo.classid}">{$testingprevnextinfo.next.title}</a>
+                {else}
+                无
+                {/if}
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

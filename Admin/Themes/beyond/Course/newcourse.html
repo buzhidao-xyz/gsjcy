@@ -1,0 +1,226 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">课程管理</a></li>
+            <li class="active">平台课程</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>平台课程管理</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Course/index" class="btn btn-primary">平台课程</a>
+            <a href="{$ANY.__APP__}?s=Course/newcourse" class="btn btn-darkorange">发布课程</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">发布平台课程</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" name="courseform" method="post" action="{$ANY.__APP__}?s=Course/coursesave" class="dataform">
+                    <div class="form-title"><b>基本信息</b></div>
+                    <div class="form-group">
+                        <label>课程标题：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="title" placeholder="课程标题" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>课程分类：</label>
+                        <span class="input-icon icon-right">
+                            <select name="classid" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择课程分类--- </option>
+                                {foreach $classlist as $d}
+                                <option value="{$d.id}">{$d.name}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>课程图片（列表示例图）：</label>
+                        <span class="input-icon icon-right">
+                            <input type="hidden" name="showimg" value="">
+                            <input id="showimgfile" type="file" name="showimgfile" placeholder="课程图片、列表图示" class="file-loading">
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>课程类型：</label>
+                        <span class="input-icon icon-right">
+                            <label style="margin-right: 30px;">
+                                <input type="radio" name="type" value="1" class="colored-default" checked="checked">
+                                <span class="text">视频课程</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="type" value="2" class="colored-default">
+                                <span class="text">图文课程</span>
+                            </label>
+                        </span>
+                    </div>
+                    <div class="course_video" style="display: block;">
+                        <div class="form-title"><b>课程视频</b></div>
+                        <div class="form-group">
+                            <label>视频封面图：</label>
+                            <span class="input-icon icon-right">
+                                <input type="hidden" name="videoimg" value="">
+                                <input id="videoimgfile" type="file" name="videoimgfile" placeholder="视频封面图" class="file-loading">
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>视频文件上传：</label>
+                            <span class="input-icon icon-right">
+                                <input id="videopathfile" type="file" name="videopathfile" placeholder="请选择视频文件" class="file-loading">
+                                <p><font color="red">*如果视频文件较大，建议采用FTP方式上传视频，存放目录：本系统目录/Upload/course/video/</font></p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>视频文件地址：</label>
+                            <span class="input-icon icon-right">
+                                <input type="text" name="videopath" value="/Upload/course/video/" placeholder="视频文件地址（文件名唯一且不能用汉字） 例：course_test.mp4" class="form-control">
+                                <i class="fa fa-video-camera"></i>
+                                <p><font color="red">*如果采用FTP方式上传视频 请将视频文件名称追加至上面输入框内容后 例：course_test.mp4</font></p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>视频文件时长（例：1:35:17）：</label>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span class="input-icon icon-right">
+                                        <input type="text" name="videotime_h" placeholder="小时 默认0" class="form-control">
+                                        <i class="fa fa-none">时</i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <span class="input-icon icon-right">
+                                        <input type="text" name="videotime_i" placeholder="分钟 默认0" class="form-control">
+                                        <i class="fa fa-none">分</i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <span class="input-icon icon-right">
+                                        <input type="text" name="videotime_s" placeholder="秒 0-59" class="form-control">
+                                        <i class="fa fa-none">秒</i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course_imgtext" style="display: none;">
+                        <div class="form-title"><b>课程图文</b></div>
+                        <div class="form-group">
+                            <label>图文内容：</label>
+                            <span class="input-icon icon-right">
+                                <textarea id="ueditor" name="imgtext" style="width: 100%; height: 500px;"></textarea>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-title"><b>其他信息</b></div>
+                    <div class="form-group">
+                        <label>复习资料（pdf、word文档）：</label>
+                        <span class="input-icon icon-right">
+                            <input type="hidden" name="reviewid" value="">
+                            <input id="reviewidfile" type="file" name="reviewidfile" placeholder="课程复习资料" class="file-loading">
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 发布 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<!-- ueditor -->
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/ueditor.config.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/ueditor.all.min.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/lang/zh-cn/zh-cn.js"></script>
+
+<!-- fileinput -->
+<link href="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}js/bootstrap-fileinput.class.js"></script>
+<script type="text/javascript">
+$(function (){
+    //初始化FIleinput
+    var BootstrapFileInputClassObj = new BootstrapFileInputClass();
+    //课程示例图
+    BootstrapFileInputClassObj.Init("showimg", JS_APP+"?s=Course/showimgupload");
+    //课程视频封面图
+    BootstrapFileInputClassObj.Init("videoimg", JS_APP+"?s=Course/videoimgupload");
+    //课程视频文件
+    BootstrapFileInputClassObj.Init("videopath", JS_APP+"?s=Course/videofileupload");
+    //课程复习资料
+    BootstrapFileInputClassObj.Init("reviewid", JS_APP+"?s=Course/reviewfileupload");
+
+    //初始化UEditor
+    UE.getEditor('ueditor');
+
+    //课程类型切换
+    $("input[name=type]").click(function (){
+        var type = $(this).val();
+        if (type == 1) {
+            $(".course_video").show();
+            $(".course_imgtext").hide();
+        }
+        if (type == 2) {
+            $(".course_video").hide();
+            $(".course_imgtext").show();
+        }
+    });
+
+    //课程Form提交
+    $("form[name=courseform]").submit(function (){
+        var url = $(this).attr('action');
+        var postdata = $(this).serialize();
+        $.post(url, postdata, function (data){
+            var status = data.error ? 'error' : 'success';
+            alertPanelShow(status, data.msg);
+            if (!data.error) {
+                var location_href = "";
+                if ("location" in data.data) {
+                    location_href = data.data.location;
+                }
+                location.href = location_href ? location_href : location.href;
+            }
+        }, 'json');
+        return false;
+    });
+});
+</script>
+{include file="Common/foot.html"}

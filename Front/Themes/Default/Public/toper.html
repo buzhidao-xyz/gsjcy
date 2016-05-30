@@ -1,0 +1,17 @@
+<!-- begin Top -->
+<div id="Toper" class="toper">
+    <div class="maincontbox">
+        <div class="title">两学一做 - 党建学习教育平台</div>
+        <div class="links">
+            {if isset($userinfo)&&!empty($userinfo)&&$userinfo.userid}
+            <span>欢迎你，{$userinfo.username}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="{$ANY.__APP__}?s=User/home">个人中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="{$ANY.__APP__}?s=User/logout" class="logout">退出</a>
+            {else}
+            <a href="{$ANY.__APP__}?s=Help/qa">帮助</a>&nbsp;&nbsp;
+            {/if}
+        </div>
+    </div>
+</div>
+<div class="topervisiblebox"></div>
+<!-- end #Toper -->

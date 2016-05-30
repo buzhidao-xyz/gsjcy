@@ -1,0 +1,43 @@
+{include file="Common/head.html"}
+
+{include file="Public/toper.html"}
+
+{include file="Public/header.html"}
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Public/resumenav.html"}
+
+    <!-- begin datalistbox -->
+    <div class="datalistbox maincontbox">
+        <!-- arclist -->
+        <ul class="arclist list-unstyled">
+            <!-- <li>
+                <div class="time"><p class="y">13</p><p class="md">2015.12</p></div>
+                <div class="cont">
+                    <p class="title">
+                        <a href="{$ANY.__APP__}?s=Article/news&arcid=1" title="全面深化三星党建模式 从最基层努力实现中国梦">全面深化三星党建模式 从最基层努力实现中国梦</a>
+                    </p>
+                    <p class="desc">全面深化三星党建模式 从最基层努力实现中国梦全面深化三星党建模式 从最基层努力实现中国梦全面深化三星党建模式 从最基层努力实现中国梦全面深化三星党建模式 从最基层努力实现中国梦...</p>
+                </div>
+            </li> -->
+            {if isset($datalist)&&is_array($datalist)&&!empty($datalist)}
+            {foreach $datalist as $d}
+            <li>
+                <div class="time"><p class="y">{'d'|date:{$d.createtime}}</p><p class="md">{'Y.m'|date:{$d.createtime}}</p></div>
+                <div class="cont">
+                    <p class="title">
+                        <a href="{$ANY.__APP__}?s=Article/news&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a>
+                    </p>
+                    <div class="desc">{$d.content|html_entity_decode|htmlSubString:100}</div>
+                </div>
+            </li>
+            {/foreach}
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
+</div>
+<!-- end #content -->
+{include file="Common/foot.html"}

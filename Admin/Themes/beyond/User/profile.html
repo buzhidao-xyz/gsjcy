@@ -1,0 +1,163 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">平台党员</a></li>
+            <li class="active">党员管理</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>平台党员管理</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=User/index" class="btn btn-primary">党员管理</a>
+            <a href="{$ANY.__APP__}?s=User/newuser" class="btn btn-darkorange">新建账号</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">党员信息</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" name="userform" method="post" action="{$ANY.__APP__}?s=User/usersave" class="dataform">
+                    <input type="hidden" name="userid" value="{$userinfo.userid}">
+                    <div class="form-title"><b>账号信息</b></div>
+                    <div class="form-group">
+                        <label>账号：</label>
+                        <span class="input-icon icon-right">
+                            <b>{$userinfo.account}</b>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>密码：</label>
+                        <span class="input-icon icon-right">
+                            <input type="password" name="password" value="" placeholder="" class="form-control">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <p><font color="red">*不修改请留空</font></p>
+                    </div>
+                    <div class="form-group">
+                        <label>状态：<b>{if $userinfo.status}<font color="green">已启用</font>{else}<font color="red">已禁用</font>{/if}</b></label>
+                    </div>
+                    <div class="form-title"><b>党员信息</b></div>
+                    <div class="form-group">
+                        <label>姓名：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="username" value="{$userinfo.username}" placeholder="党员真实姓名" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>部门：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="department" value="{$userinfo.department}" placeholder="党员所属部门" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>职位：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="position" value="{$userinfo.position}" placeholder="党员工作职位" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>党支部：</label>
+                        <span class="input-icon icon-right">
+                            <select name="dangzhibu" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择党支部--- </option>
+                                {foreach $zhibulist as $d}
+                                <option value="{$d.zhibuid}" {if $d.zhibuid==$userinfo.dangzhibu}selected{/if}>{$d.zhibuname}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 保存 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">学习经历</span>
+            </div>
+            <div class="widget-body">
+                <div class="dataprofilecont" style="padding: 10px 0;">
+                    <div class="scorebox">-----课程测评平均得分：<font color="#CB1C1D">{$usergotscore}分</font></div>
+                    <ul class="coursedlist list-unstyled">
+                        {foreach $userinfo.usercourselist as $usercourseinfo}
+                        <li style="margin: 5px 0;">
+                            <span>
+                            - {'Y年m月d日 H:i'|date:{$usercourseinfo.completetime}} 
+                            {if $usercourseinfo.status==1}<font style="color: #CB1C1D;">[已学习]</font>{/if}
+                            {if $usercourseinfo.status==2}<font style="color: #348fe2;">[已测评]</font>{/if}
+                            </span>
+                            ---
+                            <font style="color: #348fe2;">{$usercourseinfo.title}</font>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<script>
+$(function (){
+//Form提交 保存信息
+$("form[name=userform]").submit(function (){
+    var url = $(this).attr('action');
+    var postdata = $(this).serialize();
+    $.post(url, postdata, function (data){
+        var status = data.error ? 'error' : 'success';
+        alertPanelShow(status, data.msg);
+        if (!data.error) {
+            var location_href = "";
+            if ("location" in data.data) {
+                location_href = data.data.location;
+            }
+            setTimeout(function (){
+                location.href = location_href ? location_href : location.href;
+            }, 300);
+        }
+    }, 'json');
+    return false;
+});
+});
+</script>
+{include file="Common/foot.html"}

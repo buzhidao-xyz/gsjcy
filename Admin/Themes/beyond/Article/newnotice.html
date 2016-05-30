@@ -1,0 +1,117 @@
+{include file="Common/head.html"}
+
+<!-- Page Content -->
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="javascript:;">系统</a>
+            </li>
+            <li><a href="javascript:;">新闻公告</a></li>
+            <li class="active">平台公告</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>平台公告管理</h1>
+        </div>
+        <!-- inops buttons -->
+        <div class="inops-buttons">
+            <a href="{$ANY.__APP__}?s=Article/notice" class="btn btn-primary">平台公告</a>
+            <a href="{$ANY.__APP__}?s=Article/newnotice" class="btn btn-darkorange">发布公告</a>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body dashboard">
+        <div class="widget formbox">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">发布平台公告</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" name="arcform" method="post" action="{$ANY.__APP__}?s=Article/noticesave" class="dataform">
+                    <div class="form-title"><b>基本信息</b></div>
+                    <div class="form-group">
+                        <label>公告标题：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="title" placeholder="公告标题" class="form-control">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-title"><b>公告内容</b></div>
+                    <div class="form-group">
+                        <label>关键字：</label>
+                        <span class="input-icon icon-right">
+                            <input type="text" name="keyword" placeholder="关键字 多个用,号隔开" class="form-control">
+                            <i class="fa fa-tags"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>公告内容：</label>
+                        <span class="input-icon icon-right">
+                            <textarea id="ueditor" name="content" style="width: 100%; height: 500px;"></textarea>
+                        </span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit"> 发布 </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+<!-- /Page Content -->
+
+<!-- ueditor -->
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/ueditor.config.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/ueditor.all.min.js"></script>
+<script src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ueditor-1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+$(function (){
+    //初始化UEditor
+    UE.getEditor('ueditor');
+
+    //Form提交
+    $("form[name=arcform]").submit(function (){
+        var title = $(this).find("input[name=title]").val();
+        if (!title) {
+            alertPanelShow('error', '请填写标题！');
+            return false;
+        }
+
+        var keyword = $(this).find("input[name=keyword]").val();
+        if (!keyword) {
+            alertPanelShow('error', '请填写关键字！');
+            return false;
+        }
+
+        var content = $(this).find("textarea[name=content]").val();
+        if (!content) {
+            alertPanelShow('error', '请填写内容！');
+            return false;
+        }
+    });
+})
+</script>
+
+{include file="Common/foot.html"}

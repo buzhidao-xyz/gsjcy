@@ -1,0 +1,106 @@
+<!-- exambox -->
+<div id="newexambox" style="display: none;">
+    <form role="form" name="newexamform" method="post" action="javascript:;" doaction="{$ANY.__APP__}?s=Testing/examsave">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-title"><b>基本信息：</b></div>
+                <div class="form-group">
+                    <select name="examtype" class="" style="width: 100%;">
+                        {foreach $examtype as $d}
+                        <option value="{$d.id}">---{$d.name}---</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="examtitle" value="" class="form-control" placeholder="试题题目 例：党的最高理想和最终目标是实现（）">
+                </div>
+                <div class="form-title"><b>选项内容：</b></div>
+                <div class="form-group">
+                    <p><input type="text" name="optiontitlea" value="" class="form-control" placeholder="A. 选项内容 例：共产主义"></p>
+                    <p><input type="text" name="optiontitleb" value="" class="form-control" placeholder="B. 选项内容 例：马克思列宁主义"></p>
+                    <p><input type="text" name="optiontitlec" value="" class="form-control" placeholder="C. 选项内容 例：毛泽东思想"></p>
+                    <p><input type="text" name="optiontitled" value="" class="form-control" placeholder="D. 选项内容 例：社会主义"></p>
+                    <p><input type="text" name="optiontitlee" value="" class="form-control" placeholder="E. 选项内容 没有请留空"></p>
+                    <p><input type="text" name="optiontitlef" value="" class="form-control" placeholder="F. 选项内容 没有请留空"></p>
+                </div>
+                <div class="form-title"><b>试题答案：</b></div>
+                <div class="form-group">
+                    <input type="text" name="examanswer" value="" class="form-control" placeholder="试题答案 例：A、B或AB">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/bootbox/bootbox.js"></script>
+<script>
+$(function (){
+//获取message内容
+var modalshtml = $("#newexambox").html();
+//清除原Form表单html内容
+$("#newexambox").html(null);
+
+//初始化bootbox - exambox
+bootbox.dialog({
+    title: "添加试题",
+    message: modalshtml,
+    className: "modal-darkorange",
+    buttons: {
+        success: {
+            label: "确定",
+            className: "btn-blue",
+            callback: function (event){
+                //验证试题信息不为空
+                if (!$("form[name=newexamform]").find("input[name=examtitle]").val()) {
+                    alertPanelShow('error', '请填写试题题目！');
+                    return false;
+                }
+                if (!$("form[name=newexamform]").find("input[name=optiontitlea]").val()) {
+                    alertPanelShow('error', '请填写A. 选项内容！');
+                    return false;
+                }
+                if (!$("form[name=newexamform]").find("input[name=optiontitleb]").val()) {
+                    alertPanelShow('error', '请填写B. 选项内容！');
+                    return false;
+                }
+                if (!$("form[name=newexamform]").find("input[name=optiontitlec]").val()) {
+                    alertPanelShow('error', '请填写C. 选项内容！');
+                    return false;
+                }
+                if (!$("form[name=newexamform]").find("input[name=optiontitled]").val()) {
+                    alertPanelShow('error', '请填写D. 选项内容！');
+                    return false;
+                }
+                if (!$("form[name=newexamform]").find("input[name=examanswer]").val()) {
+                    alertPanelShow('error', '请填写试题答案！');
+                    return false;
+                }
+
+                //绑定Form表单submit事件
+                $("form[name=newexamform]").submit(function (event){
+                    event.preventDefault();
+
+                    var url = $(this).attr('doaction');
+                    var postdata = $(this).serialize();
+                    $.post(url, postdata, function (data){
+                        var status = data.error ? 'error' : 'success';
+                        alertPanelShow(status, data.msg);
+                        if (!data.error) {
+                            $("#examlistbox").append(data.data.examhtml);
+                        }
+                    }, 'json');
+                    return false;
+                });
+                //提交FORM 保存试题信息
+                $("form[name=newexamform]").submit();
+            }
+        },
+        danger: {
+            label: "取消",
+            className: "btn-danger",
+            callback: function (){}
+        }
+    }
+});
+});
+</script>

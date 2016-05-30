@@ -1,0 +1,33 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    {include file="Public/resumenav.html"}
+
+    <!-- begin arcbox -->
+    <div class="arcbox dataprofilebox maincontbox">
+        <div class="dataprofiletitle text-center">
+            <h2>{$arcprofile.title}</h2>
+            <h5>{'Y年m月d日 H:i'|date:{$arcprofile.createtime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览次数：{$arcprofile.viewnum}</h5>
+        </div>
+
+        <div class="dataprofilecont">
+            {$arcprofile.content|html_entity_decode}
+        </div>
+
+        <!-- <div class="dataprofilelinks">
+            <p class="linkitem">
+                <span><b>上一篇：&nbsp;</b></span><a href="javascript:;">全面深化三星党建模式 从最基层努力实现中国梦</a>
+            </p>
+            <p class="linkitem">
+                <span><b>下一篇：&nbsp;</b></span><a href="javascript:;">全面深化三星党建模式 从最基层努力实现中国梦</a>
+            </p>
+        </div> -->
+    </div>
+</div>
+<!-- end #content -->
+
+{include file="Common/foot.html"}

@@ -1,0 +1,8 @@
+<!-- resumenav course -->
+<div class="resumenav m-t-5 row">
+    <ul class="list-unstyled">
+        {foreach $courseclass as $class}
+        <li class="item col-xs-4 {if isset($classid)&&$classid==$class.id}active{/if}"><a href="{$ANY.__APP__}?s=Course/index&classid={$class.id}">{$class.name}</a></li>
+        {/foreach}
+    </ul>
+</div>

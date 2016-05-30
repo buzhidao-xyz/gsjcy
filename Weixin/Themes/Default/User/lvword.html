@@ -1,0 +1,37 @@
+{include file="Common/head.html"}
+
+{include file="Public/header.html"}
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin resumebox -->
+    <div id="ResumeBox" class="resumebox">
+        <div class="resumenav row">
+            <ul class="list-unstyled">
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="home"}active{/if}"><a href="{$ANY.__APP__}?s=User/home">个人资料</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="course"}active{/if}"><a href="{$ANY.__APP__}?s=User/course">学习经历</a></li>
+                <li class="col-xs-4 {if isset($resumenavflag)&&$resumenavflag=="lvword"}active{/if}"><a href="{$ANY.__APP__}?s=User/lvword">反馈意见</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- begin dataprofilebox -->
+    <div class="dataprofilebox maincontbox">
+        <div class="dataprofilecont">
+            <form name="LvwordForm" action="{$ANY.__APP__}?s=User/lvwordsave" method="post" class="lvwordform ajaxform">
+                <div class="form-group center-block">
+                    <input type="text" name="title" class="form-control" placeholder="标题">
+                </div>
+                <div class="form-group center-block">
+                    <textarea name="content" style="width: 100%; height: 150px;" class="form-control" placeholder="内容"></textarea>
+                </div>
+                <div class="form-group center-block" style="margin-top: 30px;">
+                    <button class="btn btn-default btn-red btn-block" type="submit"> 提 交 </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+
+{include file="Common/foot.html"}

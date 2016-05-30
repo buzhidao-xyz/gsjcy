@@ -1,0 +1,16 @@
+<!-- begin resumebox -->
+<div id="ResumeBox" class="resumebox">
+    <div class="maincontbox">
+        <div class="resume resume-testing">
+            <span class="title">我的测评：</span>
+            <span class="content">已完成 <font color="#348fe2" size="5">{$usercourseinfo.total.testingdonenum}</font> 课</span>
+            <span class="content">未完成 <font color="#348fe2" size="5">{$usercourseinfo.total.testingnonenum}</font> 课</span>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{$usercourseinfo.total.testingpercent}" aria-valuemin="0" aria-valuemax="100" style="width: {$usercourseinfo.total.testingpercent}%;">{$usercourseinfo.total.testingpercent}%</div>
+            </div>
+        </div>
+        <div class="links">
+            <a href="{$ANY.__APP__}?s=Help/qa">如何完成测评？</a>
+        </div>
+    </div>
+</div>

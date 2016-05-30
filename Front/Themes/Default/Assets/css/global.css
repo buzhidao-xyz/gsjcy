@@ -1,0 +1,223 @@
+/**
+ * 全部CSS样式表
+ * buzhidao
+ * 2015-12-08
+ */
+
+/*arclist样式表*/
+.arclist {
+    display: block;
+    overflow: hidden;
+}
+.arclist li {
+    display: block;
+    overflow: hidden;
+    height: auto;
+    padding: 15px 0;
+    padding-left: 7px;
+    padding-top: 25px;
+    border-bottom: 1px dashed #D1D1D1;
+}
+.arclist li .time {
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 80px;
+    height: auto;
+    text-align: center;
+    padding-top: 10px;
+    background: #F5F6F7;
+}
+.arclist li .time p.y {
+    font-size: 23px;
+    color: #CB1C1D;
+    margin-bottom: 3px;
+}
+.arclist li .time p.md {
+    font-size: 15px;
+    color: #CB1C1D;
+}
+.arclist li .cont {
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 850px;
+    margin-left: 17px;
+}
+.arclist li .cont .title {
+    font-size: 17px;
+    margin-bottom: 7px;
+    font-weight: 700;
+    padding: 5px 0;
+    padding-left: 23px;
+    background: url("../images/icon_flag.gif") no-repeat 3px 7px;
+}
+.arclist li .cont .title a {
+    display: block;
+    height: 19px;
+    line-height: 19px;
+    overflow: hidden;
+}
+.arclist li .cont .desc {
+    font-size: 13px;
+    text-indent: 26px;
+    height: 36px;
+    overflow: hidden;
+}
+/*qalist样式表*/
+.qalist li {
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.qalist li .cont {
+    margin-left: 0;
+    width: 100%;
+}
+.qalist li .cont .title {
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 15px;
+    background: url("../images/icon_arrow_right.gif") no-repeat right 3px #F5F6F7;
+}
+.qalist li .cont .title.expand {
+    background: url("../images/icon_arrow_down.gif") no-repeat right 5px #F5F6F7;
+}
+.qalist li .cont .title span.no {
+    float: left;
+    display: block;
+    width: 24px;
+    background: #CB1C1D;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-right: 7px;
+}
+.qalist li .cont .title a {
+    
+}
+.qalist li .arccontent {
+    display: none;
+    float: none;
+    overflow: hidden;
+    position: relative;
+    clear: both;
+    padding: 20px 10px 20px 33px;
+    font-size: 13px;
+}
+
+/*arcbox样式表*/
+.arcbox {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #E1E1E1;
+    border-top: 0;
+    border-bottom: 3px solid #E1E1E1;
+    padding: 30px;
+}
+
+/*home样式表*/
+.homebox {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #E1E1E1;
+    border-top: 0;
+    border-bottom: 3px solid #E1E1E1;
+    min-height: 700px;
+}
+.homebox .homemenu {
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 200px;
+    height: 700px;
+    background: #F5F6F7;
+    padding: 30px 0;
+    padding-right: 0;
+}
+.homebox .homemenu .welcome {
+    padding: 15px 0;
+    padding-left: 30px;
+    border-bottom: 1px solid #E1E1E1;
+    margin-bottom: 0;
+}
+.homebox .homemenu .welcome span {
+    font-weight: 700;
+    font-size: 19px;
+    color: #333333;
+}
+.homebox .homemenu ul {
+    display: block;
+    overflow: hidden;
+}
+.homebox .homemenu ul li {
+    display: block;
+    overflow: hidden;
+    height: 52px;
+    line-height: 52px;
+    text-indent: 35px;
+    border-bottom: 1px solid #E1E1E1;
+}
+.homebox .homemenu ul li a {
+    display: block;
+    overflow: hidden;
+    font-size: 15px;
+    color: #333333;
+    padding-left: 15px;
+}
+.homebox .homemenu ul li a img {
+    margin-top: -5px;
+    margin-right: 10px;
+}
+.homebox .homemenu ul li a:hover {
+    color: #CB1C1D;
+}
+.homebox .homemenu ul li.active a {
+    height: 52px;
+    line-height: 52px;
+    background: #FFFFFF;
+    color: #CB1C1D;
+    text-decoration: underline;
+}
+.homebox .homecontent {
+    padding: 30px 10px;
+    padding-top: 20px;
+    float: left;
+    width: 800px;
+    margin-left: 10px;
+    display: block;
+    overflow: hidden;
+}
+.homebox .homecontent .hometitle {
+    padding: 10px 35px;
+    color: #CB1C1D;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: right;
+    border-bottom: 3px solid #CB1C1D;
+}
+.homebox .homecontent .homeform {
+    margin-top: 50px;
+    padding: 0 35px;
+}
+.homebox .homecontent .form-group {
+    margin-bottom: 30px;
+}
+.homebox .homecontent .form-group label.control-label {
+    font-size: 15px;
+    color: #555;
+    font-weight: 700;
+}
+.homebox .homecontent .form-group span.sinfo {
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 7px;
+    color: #333;
+}
+.homebox .homecontent .form-group .form-control {
+    border-radius: 0;
+}

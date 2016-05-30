@@ -1,0 +1,164 @@
+
+    <!-- Navbar -->
+    <div id="NavBar" class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <div class="navbar-header pull-left">
+                    <a href="{$ANY.__APP__}?s=Index/index" class="navbar-brand">
+                        <small>
+                            <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/logo.png" alt="" style="width: 40px; height: 40px;" />
+                        </small>
+                    </a>
+                </div>
+                <!-- /Navbar Barnd -->
+                <!-- Sidebar Collapse -->
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+                <!-- /Sidebar Collapse -->
+                <!-- Account Area and Settings -->
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
+                                <!-- <a class=" dropdown-toggle" data-toggle="dropdown" title="Notifications" href="#">
+                                    <i class="icon fa fa-warning"></i>
+                                </a> -->
+                                <!--Notification Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-phone bg-themeprimary white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">测试消息</span>
+                                                    <span class="description">01:00 下午</span>
+                                                </div>
+                                                <div class="notification-extra">
+                                                    <i class="fa fa-clock-o themeprimary"></i>
+                                                    <span class="description">办公室</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-footer ">
+                                        <span>
+                                            今天：12月9日
+                                        </span>
+                                        <span class="pull-right">
+                                            10°c
+                                            <i class="wi wi-cloudy"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <!--/Notification Dropdown-->
+                            </li>
+                            <li>
+                                <!-- <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
+                                    <i class="icon fa fa-envelope"></i>
+                                    <span class="badge">1</span>
+                                </a> -->
+                                <!--Messages Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
+                                    <li>
+                                        <a href="#">
+                                            <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/avatars/bing.jpg" class="message-avatar" alt="Divyia Austin">
+                                            <div class="message">
+                                                <span class="message-sender">
+                                                    步知道
+                                                </span>
+                                                <span class="message-time">
+                                                    2分钟以前
+                                                </span>
+                                                <span class="message-subject">
+                                                    这里是消息标题
+                                                </span>
+                                                <span class="message-body">
+                                                    这里是一些消息内容
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--/Messages Dropdown-->
+                            </li>
+                            <li>
+                                <!-- <a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">
+                                    <i class="icon fa fa-tasks"></i>
+                                    <span class="badge">1</span>
+                                </a> -->
+                                <!--Tasks Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
+                                    <li class="dropdown-header bordered-darkorange">
+                                        <i class="fa fa-tasks"></i> 1条在线任务
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">个人资料完善度</span>
+                                                <span class="pull-right">65%</span>
+                                            </div>
+
+                                            <div class="progress progress-xs">
+                                                <div style="width:65%" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-footer">
+                                        <a href="#">查看全部任务</a>
+                                        <button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i class="fa fa-check"></i></button>
+                                    </li>
+                                </ul>
+                                <!--/Tasks Dropdown-->
+                            </li>
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="View your public profile">
+                                        <img src="{$SERVER.HOST.IMAGE_SERVER}Themes/beyond/Assets/img/avatars/bing.jpg">
+                                    </div>
+                                    <section>
+                                        <h2 style="margin: 0;"><span class="profile"><span>{$managerinfo.account}</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="#" class="pull-left">账户设置</a>
+                                    </li>
+                                    <!--Theme Selector Area-->
+                                    <li class="theme-area">
+                                        <ul class="colorpicker" id="skin-changer">
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="{$SERVER.HOST.CSS_SERVER}Themes/beyond/Assets/css/skins/deepblue.min.css"></a></li>
+                                        </ul>
+                                    </li>
+                                    <!--/Theme Selector Area-->
+                                    <li class="dropdown-footer">
+                                        <a href="{$ANY.__APP__}?s=Admin/logout">退出</a>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
