@@ -82,7 +82,7 @@ class TestingController extends CommonController
         $testinginfo = D('Testing')->getTestingByID($courseid, $testingid, $userid);
         $testingid = $testinginfo['testingid'];
         if (!is_array($testinginfo) || empty($testinginfo)) {
-            $this->assign('errormsg', '试卷信息错误！');
+            $this->assign('errormsg', '该课程暂无测评试卷！');
         } else if (!$testinginfo['ucstatus']) {
             $this->assign('errormsg', '请先学习该课程！');
         } else if ($testinginfo['utstatus']) {
@@ -137,8 +137,9 @@ class TestingController extends CommonController
         $gotscore = 0;
         foreach ($testinginfo['exams'] as $k=>$exam) {
             if (!isset($exams[$exam['examid']])) {
-                header('location:'.__APP__.'?s=Testing/exam&testingid='.$testingid.'&classid='.$classid);
-                exit;
+                // header('location:'.__APP__.'?s=Testing/exam&testingid='.$testingid.'&classid='.$classid);
+                // exit;
+                $exams[$exam['examid']] = '';
             }
 
             $useranswer = is_array($exams[$exam['examid']]) ? implode('', $exams[$exam['examid']]) : $exams[$exam['examid']];

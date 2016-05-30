@@ -107,42 +107,48 @@ class CourseController extends CommonController
         $this->assign('clearncourseid', $clearncourseid);
 
         //判断上一课是否已学习 如果未学习 显示去学习的信息
-        if ($courseid > $clearncourseid) {
-            $this->assign('errormsg', '请先学习上一课程！');
-        } else {
-            //记录开始学习时间
-            if (!$courseinfo['begintime']) {
-                M('user_course')->add(array(
-                    'userid'       => $this->userinfo['userid'],
-                    'courseid'     => $courseinfo['courseid'],
-                    'status'       => 0,
-                    'begintime'    => TIMESTAMP,
-                    'completetime' => 0,
-                ));
-            }
+        // if ($courseid > $clearncourseid) {
+        //     $this->assign('errormsg', '请先学习上一课程！');
+            
+        //     $this->display();
+        // }
 
-            //浏览次数加一
-            M('course')->where(array('courseid'=>$courseinfo['courseid']))->save(array('viewnum'=>$courseinfo['viewnum']+1));
-
-            //生成coursesign
-            $coursesign = md5($courseinfo['courseid'].TIMESTAMP);
-            session('coursesign_'.$courseinfo['courseid'], $coursesign);
-            $this->assign('coursesign', $coursesign);
+        //记录开始学习时间
+        if (!$courseinfo['begintime']) {
+            M('user_course')->add(array(
+                'userid'       => $this->userinfo['userid'],
+                'courseid'     => $courseinfo['courseid'],
+                'status'       => 0,
+                'begintime'    => TIMESTAMP,
+                'completetime' => 0,
+            ));
         }
+
+        //浏览次数加一
+        M('course')->where(array('courseid'=>$courseinfo['courseid']))->save(array('viewnum'=>$courseinfo['viewnum']+1));
+
+        //生成coursesign
+        $coursesign = md5($courseinfo['courseid'].TIMESTAMP);
+        session('coursesign_'.$courseinfo['courseid'], $coursesign);
+        $this->assign('coursesign', $coursesign);
+
+        $this->scomplete($courseinfo['courseid']);
 
         $this->display();
     }
 
     //课程已学习完 AJAX接口
-    public function scomplete()
+    public function scomplete($courseid=null)
     {
-        $courseid = $this->_getCourseid();
+        if (!$courseid) {
+            $courseid = $this->_getCourseid();
 
-        //如果校验码不对 返回false
-        $coursesign = mRequest('coursesign');
-        $mycoursesign = session('coursesign_'.$courseid);
-        if ($coursesign != $mycoursesign) {
-            return false;
+            //如果校验码不对 返回false
+            $coursesign = mRequest('coursesign');
+            $mycoursesign = session('coursesign_'.$courseid);
+            if ($coursesign != $mycoursesign) {
+                return false;
+            }
         }
 
         $where = array(
@@ -165,6 +171,6 @@ class CourseController extends CommonController
             M('course')->where(array('courseid'=>$courseid))->setInc('learnnum');
         }
 
-        echo true;
+        if (!$courseid) echo true;
     }
 }

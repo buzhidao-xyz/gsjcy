@@ -39,7 +39,7 @@
                         {if $courseinfo.courseid==$clearncourseid}
                         <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-default btn-study btn-red">马上去学习</a>
                         {else}
-                        <a href="javascript:;" class="btn btn-default btn-study btn-red disabled" disabled>马上去学习</a>
+                        <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-default btn-study btn-red">马上去学习</a>
                         {/if}
                         {/if}
                     </div>

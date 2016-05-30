@@ -64,4 +64,25 @@
 </div>
 <!-- end #content -->
 
+<script type="text/javascript">
+$(function (){
+$("form[name=examform]").submit(function (){
+    var examflag = 1;
+
+    //遍历exambox
+    $("ul.exambox li .examsubject .options").each(function (){
+        var examoptionflag = 0;
+        $(this).find(".option input").each(function (){
+            if ($(this).is(":checked")) examoptionflag = 1;
+        });
+
+        if (examoptionflag==0) examflag = 0;
+    });
+
+    if (!examflag && !window.confirm('试题没有全部答完 是否确认提交试卷？')) {
+        return false;
+    }
+});
+})
+</script>
 {include file="Common/foot.html"}

@@ -20,10 +20,17 @@
             <h5>浏览次数：{$courseinfo.viewnum}</h5>
         </div>
         <div class="dataprofilecont text-center">
+            {if $courseinfo.type == 1}
             <!-- course video -->
             <div id="coursevideo" class="coursevideo" courseid="{$courseinfo.courseid}" videoimg="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videoimg}" videofile="{$SERVER.HOST.HTTP_HOST}{$courseinfo.videopath}" coursesign="{$coursesign}"></div>
             <script type="text/javascript" src="{$SERVER.HOST.PUBLIC_SERVER}plugins/ckplayer/ckplayer.js" charset="utf-8"></script>
             <script src="{$SERVER.HOST.JS_SERVER}Themes/Default/Assets/js/ckplayer.class.js"></script>
+            {/if}
+            {if $courseinfo.type == 2}
+            <div class="imgtext" style="padding-bottom: 30px;">
+            {$courseinfo.imgtext|html_entity_decode}
+            </div>
+            {/if}
             
             <!-- coursefunc -->
             <div class="coursefunc row">
@@ -36,7 +43,7 @@
                     {else if $courseinfo.status==2}
                     <p>课程已学习完成？&nbsp;<a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-default btn-red"> 查看随堂测评成绩 </a></p>
                     {else}
-                    <p>课程已学习完成？&nbsp;<a href="javascript:;" id="ExamBtn" class="btn btn-red disabled"> 马上进行随堂测评 </a></p>
+                    <p>课程已学习完成？&nbsp;<a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-red"> 马上进行随堂测评 </a></p>
                     {/if}
                 </div>
             </div>

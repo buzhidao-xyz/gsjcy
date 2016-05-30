@@ -103,7 +103,7 @@ class BaseController extends Controller
             'systemtitle' => array(
                 'name'  => '系统名称',
                 'key'   => 'systemtitle',
-                'value' => '三星半导体 - 两学一做平台',
+                'value' => '姑苏检察院 - 两学一做平台',
             ),
         );
         $this->assign('SYSTEM', $SYSTEM);
