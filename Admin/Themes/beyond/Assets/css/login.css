@@ -31,8 +31,8 @@
 	background: rgba(0, 0, 0, 0.35) none repeat scroll 0 0;
 }
 .loginbox .loginlogo img {
-	width: 230px;
-    margin-top: 50px;
+	width: 200px;
+    margin-top: 15px;
 }
 .loginbox .loginform {
 	float: left;
