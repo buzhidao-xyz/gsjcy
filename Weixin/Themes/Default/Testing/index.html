@@ -6,13 +6,76 @@
 <div id="content" class="content">
     <!-- begin resumebox -->
     <div id="ResumeBox" class="resumebox">
-        {include file="Public/resume_courselearn.html"}
+        {include file="Public/resume_testingdone.html"}
 
-        {include file="Public/resumenav_course.html"}
+        {include file="Public/resumenav_testing.html"}
     </div>
 
-    
+    <!-- begin datalistbox -->
+    <div class="datalistbox">
+        <!-- listbox -->
+        <ul class="listbox list-unstyled">
+            {if isset($testinglist)&&is_array($testinglist)&&!empty($testinglist)}
+            {foreach $testinglist as $testinginfo}
+            <li>
+                <div class="cont" style="display: block; overflow: hidden;">
+                    {if $testinginfo.utstatus}
+                    <a href="{$ANY.__APP__}?s=Testing/profile&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="title done">{$testinginfo.title}</a>
+                    <span class="completed">已完成</span>
+                    {else}
+                    {if $testinginfo.ucstatus}
+                    <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="title">{$testinginfo.title}</a>
+                    <span class="uncompleted">未完成</span>
+                    {else}
+                    <a href="javascript:;" class="title disabled" disabled>{$testinginfo.title}</a>
+                    <span class="uncompleted">未学习</span>
+                    {/if}
+                    {/if}
+                    <span class="tongji">已有 <font color="#CB1C1D" size="3">{$testinginfo.donenum}</font> 位党员参加学习</span>
+                </div>
+                <div class="ops row clearfix">
+                    <div class="col-xs-12">
+                        {if $testinginfo.utstatus}
+                        <a href="{$ANY.__APP__}?s=Testing/profile&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-info">查看成绩</a>
+                        {else}
+                        {if $testinginfo.ucstatus}
+                        <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-red">开始测评</a>
+                        {else}
+                        <a href="javascript:;" class="btn btn-block btn-study btn-red disabled" disabled>开始测评</a>
+                        {/if}
+                        {/if}
+                    </div>
+                </div>
+            </li>
+            {/foreach}
+            {else}
+            <p><h3 class="text-center">暂无测评</h3></p>
+            {/if}
+        </ul>
+
+        {include file="Public/pagination.html"}
+    </div>
 </div>
 <!-- end #content -->
 
+<style type="text/css">
+.datalistbox ul.listbox li .cont span.completed {
+    color: #CB1C1D;
+    display: block;
+    float: left;
+    margin-top: 10px;
+    position: relative;
+    font-size: 12px;
+    padding-left: 2px;
+}
+.datalistbox ul.listbox li .cont span.uncompleted {
+    color: #A1A1A1;
+    display: block;
+    float: left;
+    margin-top: 10px;
+    position: relative;
+    font-size: 12px;
+    padding-left: 2px;
+}
+</style>
 {include file="Common/foot.html"}

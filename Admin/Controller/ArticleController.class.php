@@ -10,8 +10,8 @@ class ArticleController extends CommonController
 {
     // 文章分类
     private $_article_class = array(
-        1 => array('id'=>1, 'name'=>'党建新闻'),
-        2 => array('id'=>2, 'name'=>'平台公告'),
+        1 => array('id'=>1, 'name'=>'党务知识'),
+        2 => array('id'=>2, 'name'=>'党建活动'),
     );
 
     public function __construct()

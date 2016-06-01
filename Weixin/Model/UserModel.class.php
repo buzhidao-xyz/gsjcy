@@ -114,7 +114,7 @@ class UserModel extends CommonModel
                 'courselearnnum' => 0,
                 'coursenonenum'  => 0,
                 'testingtotalnum' => 0,
-                'testinglearnnum' => 0,
+                'testingdonenum' => 0,
                 'testingnonenum'  => 0,
                 'percent'        => 0,
                 'totalscore' => 0,
@@ -134,7 +134,7 @@ class UserModel extends CommonModel
             //该分类总测评数
             $testingtotalnum = M('testing')->table($subquery.' sub')->count();
             //已完成测评数
-            $testingdonenum = M('testing')->table($subquery.' sub')->join(' __USER_TESTING__ ut on ut.testingid=sub.testingid and ut.userid='.$userid.' and ut.status=2 ')->count();
+            $testingdonenum = M('testing')->table($subquery.' sub')->join(' __USER_TESTING__ ut on ut.testingid=sub.testingid and ut.userid='.$userid.' and ut.status=1 ')->count();
             //未完成测评数
             $testingnonenum = $testingtotalnum-$testingdonenum;
             $testingpercent = $testingtotalnum>0 ? floor($testingdonenum/$testingtotalnum*100) : 0;

@@ -15,8 +15,8 @@ class ArticleController extends BaseController
 
     //新闻分类id
     public $arcclass = array(
-        'news'   => array('id'=>1, 'name'=>'党建新闻'),
-        'notice' => array('id'=>2, 'name'=>'平台公告'),
+        'news'   => array('id'=>1, 'name'=>'党务知识'),
+        'notice' => array('id'=>2, 'name'=>'党建活动'),
     );
 
     public function __construct()
