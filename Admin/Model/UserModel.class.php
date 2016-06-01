@@ -32,7 +32,7 @@ class UserModel extends CommonModel
         );
 
         $total = M('user')->where($where)->count();
-        $result = M('user')->where($where)->order('createtime desc')->limit($start, $length)->select();
+        $result = M('user')->where($where)->order('userid asc')->limit($start, $length)->select();
 
         $data = array();
         $userids = array(0);
@@ -265,7 +265,7 @@ class UserModel extends CommonModel
     {
         if (!$zhibuname) return false;
 
-        $zhibuinfo = $this->getDangzhibu($zhibuid);
+        $zhibuinfo = $this->getDangzhibu(null, $zhibuname);
 
         return $zhibuinfo['total'] ? array_shift($zhibuinfo['data']) : array();
     }
