@@ -25,7 +25,8 @@ class UserController extends BaseController
     private function _getAccount()
     {
         $account = mRequest('account');
-        if (!Filter::F_Account($account)) $this->ajaxReturn(1, '账号或密码错误！');
+        // if (!Filter::F_Account($account)) $this->ajaxReturn(1, '账号或密码错误！');
+        if (!$account) $this->ajaxReturn(1, '账号或密码错误！');
 
         return $account;
     }

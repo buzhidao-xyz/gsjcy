@@ -42,7 +42,8 @@ class UserController extends CommonController
     private function _getAccount()
     {
         $account = mRequest('account');
-        if (!Filter::F_Account($account)) $this->ajaxReturn(1, '请填写正确的账号！');
+        // if (!Filter::F_Account($account)) $this->ajaxReturn(1, '请填写正确的账号！');
+        if (!$account) $this->ajaxReturn(1, '请填写正确的账号！');
 
         return $account;
     }
