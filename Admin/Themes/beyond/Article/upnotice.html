@@ -9,8 +9,8 @@
                 <i class="fa fa-home"></i>
                 <a href="javascript:;">系统</a>
             </li>
-            <li><a href="javascript:;">新闻公告</a></li>
-            <li class="active">平台公告</li>
+            <li><a href="javascript:;">党务建设</a></li>
+            <li class="active">党建活动</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
@@ -18,12 +18,12 @@
     <!-- Page Header -->
     <div class="page-header position-relative">
         <div class="header-title">
-            <h1>平台公告管理</h1>
+            <h1>党建活动管理</h1>
         </div>
         <!-- inops buttons -->
         <div class="inops-buttons">
-            <a href="{$ANY.__APP__}?s=Article/notice" class="btn btn-primary">平台公告</a>
-            <a href="{$ANY.__APP__}?s=Article/newnotice" class="btn btn-darkorange">发布公告</a>
+            <a href="{$ANY.__APP__}?s=Article/notice" class="btn btn-primary">党建活动</a>
+            <a href="{$ANY.__APP__}?s=Article/newnotice" class="btn btn-darkorange">发布党建活动</a>
         </div>
         <!--Header Buttons-->
         <div class="header-buttons">
@@ -45,20 +45,20 @@
     <div class="page-body dashboard">
         <div class="widget formbox">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">编辑平台公告</span>
+                <span class="widget-caption">编辑党建活动</span>
             </div>
             <div class="widget-body">
                 <form role="form" name="arcform" method="post" action="{$ANY.__APP__}?s=Article/noticesave" class="dataform">
                     <input type="hidden" name="arcid" value="{$arcinfo.arcid}">
                     <div class="form-title"><b>基本信息</b></div>
                     <div class="form-group">
-                        <label>公告标题：</label>
+                        <label>标题：</label>
                         <span class="input-icon icon-right">
-                            <input type="text" name="title" value="{$arcinfo.title}" placeholder="公告标题" class="form-control">
+                            <input type="text" name="title" value="{$arcinfo.title}" placeholder="标题" class="form-control">
                             <i class="fa fa-user"></i>
                         </span>
                     </div>
-                    <div class="form-title"><b>公告内容</b></div>
+                    <div class="form-title"><b>活动内容</b></div>
                     <div class="form-group">
                         <label>关键字：</label>
                         <span class="input-icon icon-right">
