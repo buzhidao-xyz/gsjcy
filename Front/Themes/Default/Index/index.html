@@ -50,8 +50,8 @@ $(function(){
         <!-- news box -->
         <div class="articlelistbox newsbox">
             <div class="title">
-                <span>党务知识</span>
-                <a href="{$ANY.__APP__}?s=Article/news" class="link">更多>></a>
+                <span>{$djarcclassinfo.name}</span>
+                <a href="{$ANY.__APP__}?s=Article/news&classid={$djarcclassinfo.id}" class="link">更多>></a>
             </div>
             <ul class="cont list-unstyled">
                 {if isset($djarclist)&&is_array($djarclist)&&!empty($djarclist)}
@@ -65,8 +65,8 @@ $(function(){
         <!-- notice box -->
         <div class="articlelistbox noticebox">
             <div class="title">
-                <span>党建活动</span>
-                <a href="{$ANY.__APP__}?s=Article/notice" class="link">更多>></a>
+                <span>{$ntarcclassinfo.name}</span>
+                <a href="{$ANY.__APP__}?s=Article/news&classid={$ntarcclassinfo.id}" class="link">更多>></a>
             </div>
             <ul class="cont list-unstyled">
                 {if isset($ntarclist)&&is_array($ntarclist)&&!empty($ntarclist)}

@@ -10,8 +10,8 @@
                 <i class="fa fa-home"></i>
                 <a href="javascript:;">系统</a>
             </li>
-            <li><a href="javascript:;">党务建设</a></li>
-            <li class="active">党务知识</li>
+            <li><a href="javascript:;">新闻公告</a></li>
+            <li class="active">党建新闻</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
@@ -19,12 +19,12 @@
     <!-- Page Header -->
     <div class="page-header position-relative">
         <div class="header-title">
-            <h1>发布党务知识</h1>
+            <h1>管理党建新闻</h1>
         </div>
         <!-- inops buttons -->
         <div class="inops-buttons">
-            <a href="{$ANY.__APP__}?s=Article/news" class="btn btn-primary">党务知识</a>
-            <a href="{$ANY.__APP__}?s=Article/newnews" class="btn btn-darkorange">发布党务知识</a>
+            <a href="{$ANY.__APP__}?s=Article/news" class="btn btn-primary">党建新闻</a>
+            <a href="{$ANY.__APP__}?s=Article/newnews" class="btn btn-darkorange">发布党建新闻</a>
         </div>
         <!--Header Buttons-->
         <div class="header-buttons">
@@ -46,7 +46,7 @@
     <div class="page-body dashboard">
         <div class="widget formbox">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">发布党务知识</span>
+                <span class="widget-caption">发布党建新闻</span>
             </div>
             <div class="widget-body">
                 <form role="form" name="arcform" method="post" action="{$ANY.__APP__}?s=Article/newssave" class="dataform">
@@ -58,7 +58,18 @@
                             <i class="fa fa-user"></i>
                         </span>
                     </div>
-                    <div class="form-title"><b>知识内容</b></div>
+                    <div class="form-group">
+                        <label>新闻分类：</label>
+                        <span class="input-icon icon-right">
+                            <select name="classid" class="select2el" style="width: 100%;">
+                                <option value="0"> ---请选择新闻分类--- </option>
+                                {foreach $articleclass as $d}
+                                <option value="{$d.id}" {if $classid==$d.id}selected{/if}>{$d.name}</option>
+                                {/foreach}
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-title"><b>新闻内容</b></div>
                     <div class="form-group">
                         <label>关键字：</label>
                         <span class="input-icon icon-right">

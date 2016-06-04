@@ -20,8 +20,43 @@ class ArticleModel extends CommonModel
         if ($classid) $where['classid'] = $classid;
 
         $result = M('article_class')->where($where)->select();
+        $data = array();
+        if (is_array($result) && !empty($result)) {
+            foreach ($result as $d) {
+                $data[$d['classid']] = array(
+                    'id' => $d['classid'],
+                    'name' => $d['classname'],
+                    'status' => $d['status'],
+                );
+            }
+        }
 
-        return is_array($result) ? $result : array();
+        return $data;
+    }
+
+    //保存文章分类
+    public function saveArcclass($classid=null, $data=array())
+    {
+        if (!is_array($data) || empty($data)) return false;
+
+        if ($classid) {
+            $result = M('article_class')->where(array('classid'=>$classid))->save($data);
+            !$result ? $classid = false : null;
+        } else {
+            $classid = M('article_class')->add($data);
+        }
+
+        return $classid ? $classid : false;
+    }
+
+    //删除文章分类
+    public function delarcclass($classid=null)
+    {
+        if (!$classid) return false;
+
+        if (M('article')->where(array('classid'=>$classid))->count()) return -1;
+
+        return M('article_class')->where(array('classid'=>$classid))->delete();
     }
 
     /**

@@ -16,12 +16,22 @@ class ArticleModel extends CommonModel
     //获取文章分类
     public function getArcclass($classid=null)
     {
-        $where = array();
+        $where = array('status'=>1);
         if ($classid) $where['classid'] = $classid;
 
         $result = M('article_class')->where($where)->select();
+        $data = array();
+        if (is_array($result) && !empty($result)) {
+            foreach ($result as $d) {
+                $data[$d['classid']] = array(
+                    'id' => $d['classid'],
+                    'name' => $d['classname'],
+                    'status' => $d['status'],
+                );
+            }
+        }
 
-        return is_array($result) ? $result : array();
+        return $data;
     }
 
     /**

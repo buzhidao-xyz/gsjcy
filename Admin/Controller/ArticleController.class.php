@@ -8,17 +8,29 @@ namespace Admin\Controller;
 
 class ArticleController extends CommonController
 {
-    // 文章分类
-    private $_article_class = array(
-        1 => array('id'=>1, 'name'=>'党务知识'),
-        2 => array('id'=>2, 'name'=>'党建活动'),
-    );
-
     public function __construct()
     {
         parent::__construct();
 
+        //文章分类
+        $this->_article_class = D('Article')->getArcclass();
         $this->assign('articleclass', $this->_article_class);
+    }
+
+    private function _getArcclassid()
+    {
+        $classid = mRequest('classid');
+        $this->assign('classid', $classid);
+
+        return $classid;
+    }
+
+    private function _getArcclassname()
+    {
+        $classname = mRequest('classname');
+        $this->assign('classname', $classname);
+
+        return $classname;
     }
 
     //获取文章id - arcid
@@ -71,14 +83,93 @@ class ArticleController extends CommonController
         return $content;
     }
 
+    //新闻分类
+    public function arcclass()
+    {
+        $this->assign('datalist', $this->_article_class);
+        $this->display();
+    }
+
+    //新闻分类-编辑
+    public function arcclassedit()
+    {
+        $classid = $this->_getArcclassid();
+        if (!$classid) $this->ajaxReturn(1, '未知新闻分类！');
+
+        $arcclassinfo = $this->_article_class[$classid];
+        $this->assign('arcclassinfo', $arcclassinfo);
+
+        $html = $this->fetch('Article/arcclassedit');
+
+        $this->ajaxReturn(0, null, array(
+            'html' => $html
+        ));
+    }
+
+    //新闻分类-保存
+    public function arcclasssave()
+    {
+        $classid = $this->_getArcclassid();
+        $classname = $this->_getArcclassname();
+
+        $data = array();
+        if ($classid) {
+            $data = array(
+                'classname' => $classname,
+                'updatetime' => TIMESTAMP,
+            );
+            $result = D('Article')->saveArcclass($classid, $data);
+        } else {
+            $data = array(
+                'classname' => $classname,
+                'status' => 1,
+                'createtime' => TIMESTAMP,
+                'updatetime' => TIMESTAMP,
+            );
+            $result = D('Article')->saveArcclass(null, $data);
+        }
+        if ($result) {
+            $this->ajaxReturn(0, '保存成功！');
+        } else {
+            $this->ajaxReturn(1, '保存失败！');
+        }
+    }
+
+    //新闻分类-删除
+    public function delarcclass()
+    {
+        $classid = $this->_getArcclassid();
+        if (!$classid) $this->ajaxReturn(1, '未知新闻分类！');
+
+        $result = D('Article')->delarcclass($classid);
+        if ($result>0) {
+            $this->ajaxReturn(0, '删除成功！');
+        } else if ($result==-1) {
+            $this->ajaxReturn(1, '该新闻分类里有新闻条目！不能删除！');
+        } else {
+            $this->ajaxReturn(1, '删除失败！');
+        }
+    }
+
+    //显示-隐藏
+    public function arcclassshow()
+    {
+        $classid = $this->_getArcclassid();
+        if (!$classid) $this->ajaxReturn(1, '未知新闻分类！');
+
+        $status = mRequest('status');
+
+        $result = M('article_class')->where(array('classid'=>$classid))->save(array('status'=>$status));
+        if ($result) {
+            $this->ajaxReturn(0, '成功！');
+        } else {
+            $this->ajaxReturn(1, '失败！');
+        }
+    }
+
     //党建新闻初始化
     private function _newsInit()
     {
-        $this->_classid = $this->_article_class[1]['id'];
-        $this->_classname = $this->_article_class[1]['name'];
-        $this->assign("classid", $this->_classid);
-        $this->assign("classname", $this->_classname);
-
         $this->assign("sidebar_active", array("Article","news"));
 
         $this->_page_location = __APP__.'?s=Article/news';
@@ -89,10 +180,11 @@ class ArticleController extends CommonController
     {
         $this->_newsInit();
 
+        $classid = $this->_getArcclassid();
         $keywords = $this->_getKeywords();
 
         list($start, $length) = $this->_mkPage();
-        $data = D('Article')->getArc(null, $this->_classid, $keywords, 1, $start, $length);
+        $data = D('Article')->getArc(null, $classid, $keywords, 1, $start, $length);
         $total = $data['total'];
         $datalist = $data['data'];
 
@@ -138,6 +230,7 @@ class ArticleController extends CommonController
         $arcid = $this->_getArcid();
 
         $title = $this->_getTitle();
+        $classid = $this->_getArcclassid();
         $keyword = $this->_getKeyword();
         $content = $this->_getContent();
 
@@ -145,6 +238,7 @@ class ArticleController extends CommonController
             $msg = '编辑';
             $data = array(
                 'title'      => $title,
+                'classid'    => $classid,
                 'content'    => $content,
                 'keyword'    => $keyword,
                 'updatetime' => TIMESTAMP
@@ -154,6 +248,7 @@ class ArticleController extends CommonController
             $msg = '发布';
             $data = array(
                 'title'      => $title,
+                'classid'    => $classid,
                 'content'    => $content,
                 'classid'    => $this->_classid,
                 'keyword'    => $keyword,
@@ -169,107 +264,6 @@ class ArticleController extends CommonController
             $this->pageReturn(0, '新闻'.$msg.'成功！', $this->_page_location);
         } else {
             $this->pageReturn(1, '新闻'.$msg.'失败！', $this->_page_location);
-        }
-    }
-
-    //平台公告初始化
-    private function _noticeInit()
-    {
-        $this->_classid = $this->_article_class[2]['id'];
-        $this->_classname = $this->_article_class[2]['name'];
-        $this->assign("classid", $this->_classid);
-        $this->assign("classname", $this->_classname);
-
-        $this->assign("sidebar_active", array("Article","notice"));
-
-        $this->_page_location = __APP__.'?s=Article/notice';
-    }
-
-    //平台公告
-    public function notice()
-    {
-        $this->_noticeInit();
-
-        $keywords = $this->_getKeywords();
-
-        list($start, $length) = $this->_mkPage();
-        $data = D('Article')->getArc(null, $this->_classid, $keywords, 1, $start, $length);
-        $total = $data['total'];
-        $datalist = $data['data'];
-
-        $this->assign('datalist', $datalist);
-
-        $param = array(
-            'keywords'   => $keywords,
-        );
-        $this->assign('param', $param);
-        //解析分页数据
-        $this->_mkPagination($total, $param);
-
-        $this->display();
-    }
-
-    //发布党建新闻
-    public function newnotice()
-    {
-        $this->_noticeInit();
-
-        $this->display();
-    }
-
-    //编辑党建新闻
-    public function upnotice()
-    {
-        $this->_noticeInit();
-
-        $arcid = $this->_getArcid();
-        if (!$arcid) $this->pageReturn(1, '未知新闻公告ID！', $this->_page_location);
-
-        $arcinfo = D('Article')->getArcByID($arcid);
-
-        $this->assign('arcinfo', $arcinfo);
-        $this->display();
-    }
-
-    //保存党建新闻
-    public function noticesave()
-    {
-        $this->_noticeInit();
-        
-        $arcid = $this->_getArcid();
-
-        $title = $this->_getTitle();
-        $keyword = $this->_getKeyword();
-        $content = $this->_getContent();
-
-        if ($arcid) {
-            $msg = '编辑';
-            $data = array(
-                'title'      => $title,
-                'content'    => $content,
-                'keyword'    => $keyword,
-                'updatetime' => TIMESTAMP
-            );
-            $arcid = D('Article')->saveArc($arcid, $data);
-        } else {
-            $msg = '发布';
-            $data = array(
-                'title'      => $title,
-                'content'    => $content,
-                'classid'    => $this->_classid,
-                'keyword'    => $keyword,
-                'status'     => 1,
-                'viewnum'    => 0,
-                'createtime' => TIMESTAMP,
-                'updatetime' => TIMESTAMP
-            );
-            $arcid = D('Article')->saveArc(null, $data);
-        }
-        
-        if ($arcid) {
-            $this->pageReturn(0, '公告'.$msg.'成功！', $this->_page_location);
-        } else {
-            $this->pageReturn(1, '公告'.$msg.'失败！', $this->_page_location);
         }
     }
 

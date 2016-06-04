@@ -2,8 +2,11 @@
 <div id="ResumeBox" class="resumebox">
     <div class="resumenav row">
         <ul class="list-unstyled">
-            <li class="col-xs-6 {if isset($resumenavflag)&&$resumenavflag=="news"}active{/if}"><a href="{$ANY.__APP__}?s=Article/news">党务知识</a></li>
-            <li class="col-xs-6 {if isset($resumenavflag)&&$resumenavflag=="notice"}active{/if}"><a href="{$ANY.__APP__}?s=Article/notice">党建活动</a></li>
+            {if is_array($articleclass)}
+            {foreach $articleclass as $d}
+            <li class="col-xs-6 {if isset($classid)&&$classid==$d.id}active{/if}"><a href="{$ANY.__APP__}?s=Article/news&classid={$d.id}">{$d.name}</a></li>
+            {/foreach}
+            {/if}
         </ul>
     </div>
 </div>

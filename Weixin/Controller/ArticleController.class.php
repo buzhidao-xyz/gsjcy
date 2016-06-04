@@ -7,15 +7,13 @@ namespace Weixin\Controller;
 
 class ArticleController extends BaseController
 {
-    //新闻分类id
-    public $arcclass = array(
-        'news'   => array('id'=>1, 'name'=>'党务知识'),
-        'notice' => array('id'=>2, 'name'=>'党建活动'),
-    );
-
     public function __construct()
     {
         parent::__construct();
+
+        //文章分类
+        $this->_article_class = D('Article')->getArcclass();
+        $this->assign('articleclass', $this->_article_class);
     }
 
     public function index()
@@ -25,6 +23,15 @@ class ArticleController extends BaseController
         // $this->_CKWXUserLogon();
 
         $this->news();
+    }
+
+    //获取classid
+    private function _getclassid()
+    {
+        $classid = mRequest('classid');
+        $this->assign('classid', $classid);
+
+        return $classid;
     }
 
     //获取arcid
@@ -54,8 +61,10 @@ class ArticleController extends BaseController
     //新闻列表
     private function _newsindex()
     {
+        $classid = $this->_getclassid();
+
         list($start, $length) = $this->_mkPage();
-        $arclist = D('Article')->getArc(null, $this->arcclass['news']['id'], null, $start, $length);
+        $arclist = D('Article')->getArc(null, $classid, null, $start, $length);
         $total = $arclist['total'];
         $datalist = $arclist['data'];
 
@@ -74,48 +83,7 @@ class ArticleController extends BaseController
         M('article')->where(array('arcid'=>$arcprofile['arcid']))->save(array('viewnum'=>$arcprofile['viewnum']+1));
         
         $this->assign('arcprofile', $arcprofile);
+        $this->assign('classid', $arcprofile['classid']);
         $this->display('Article/news_profile');
-    }
-
-    //公告
-    public function notice()
-    {
-        // $this->_CKWXUserLogon();
-        
-        $this->assign("resumenavflag", "notice");
-        
-        $arcid = $this->_getArcid();
-
-        if ($arcid) {
-            $this->_noticeprofile($arcid);
-        } else {
-            $this->_noticeindex();
-        }
-    }
-
-    //公告列表
-    private function _noticeindex()
-    {
-        list($start, $length) = $this->_mkPage();
-        $arclist = D('Article')->getArc(null, $this->arcclass['notice']['id'], null, $start, $length);
-        $total = $arclist['total'];
-        $datalist = $arclist['data'];
-
-        $this->assign('datalist', $datalist);
-
-        $this->_mkPagination($total);
-        $this->display('Article/notice_index');
-    }
-    
-    //公告内容
-    private function _noticeprofile($arcid=null)
-    {
-        $arcprofile = D('Article')->getArcByID($arcid);
-        
-        //浏览量+1
-        M('article')->where(array('arcid'=>$arcprofile['arcid']))->save(array('viewnum'=>$arcprofile['viewnum']+1));
-        
-        $this->assign('arcprofile', $arcprofile);
-        $this->display('Article/notice_profile');
     }
 }

@@ -2,6 +2,7 @@
 
 <!-- Page Content -->
 <div class="page-content">
+    
     <!-- Page Breadcrumb -->
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
@@ -9,8 +10,8 @@
                 <i class="fa fa-home"></i>
                 <a href="javascript:;">系统</a>
             </li>
-            <li><a href="javascript:;">党务建设</a></li>
-            <li class="active">党建活动</li>
+            <li><a href="javascript:;">新闻公告</a></li>
+            <li class="active">新闻分类</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
@@ -18,12 +19,10 @@
     <!-- Page Header -->
     <div class="page-header position-relative">
         <div class="header-title">
-            <h1>党建活动管理</h1>
+            <h1>新闻分类管理</h1>
         </div>
         <!-- inops buttons -->
         <div class="inops-buttons">
-            <a href="{$ANY.__APP__}?s=Article/notice" class="btn btn-primary">党建活动</a>
-            <a href="{$ANY.__APP__}?s=Article/newnotice" class="btn btn-darkorange">发布党建活动</a>
         </div>
         <!--Header Buttons-->
         <div class="header-buttons">
@@ -45,16 +44,16 @@
     <div class="page-body dashboard">
         <div class="widget searchbox">
             <div class="widget-header bordered-bottom bordered-palegreen">
-                <span class="widget-caption">搜索</span>
+                <span class="widget-caption">增加新闻分类</span>
             </div>
             <div class="widget-body">
-                <form role="form" class="form-inline searchform" method="post" action="{$ANY.__APP__}?s=Article/notice">
+                <form name="ajax-form" role="form" class="form-inline searchform" method="post" action="{$ANY.__APP__}?s=Article/arcclasssave">
                     <div class="form-group">
-                        <label>标题关键字：</label>
-                        <input type="text" name="keywords" value="{$keywords}" placeholder="标题、关键字等" class="form-control">
+                        <label>分类名称：</label>
+                        <input type="text" name="classname" value="" placeholder="新闻分类名称" class="form-control">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success" type="submit"> 搜索 </button>
+                        <button class="btn btn-success" type="submit"> 保存 </button>
                     </div>
                 </form>
             </div>
@@ -62,7 +61,7 @@
 
         <div class="widget tablebox">
             <div class="widget-header bordered-bottom bordered-palegreen">
-                <span class="widget-caption">党建活动列表</span>
+                <span class="widget-caption">新闻分类列表</span>
                 <div class="widget-buttons">
                     <a href="#" data-toggle="maximize">
                         <i class="fa fa-expand"></i>
@@ -73,16 +72,13 @@
                 </div>
             </div>
             <div class="widget-body no-padding">
+                <div id="arcclassbox" style="display: none;"></div>
                 <table id="searchable" class="table table-bordered table-hover table-striped">
                     <thead class="bordered-darkorange">
                         <tr role="row">
                             <th>ID</th>
-                            <th>标题</th>
-                            <th>分类</th>
-                            <th>关键字</th>
-                            <th>浏览（次）</th>
+                            <th>分类名称</th>
                             <th>状态</th>
-                            <th>创建日期</th>
                             <th>操作项</th>
                         </tr>
                     </thead>
@@ -91,16 +87,17 @@
                     <tbody>
                         {foreach $datalist as $d}
                         <tr>
-                            <td>{$d.arcid}</td>
-                            <td>{$d.title}</td>
-                            <td>{$articleclass[$d.classid]['name']}</td>
-                            <td>{$d.keyword}</td>
-                            <td>{$d.viewnum}</td>
-                            <td><font color="green">正常</font></td>
-                            <td>{'Y-m-d H:i:s'|date:{$d.createtime}}</td>
+                            <td>{$d.id}</td>
+                            <td>{$d.name}</td>
+                            <td>{if $d.status}显示{else}隐藏{/if}</td>
                             <td>
-                                <a href="{$ANY.__APP__}?s=Article/upnotice&arcid={$d.arcid}" class="btn btn-sky">编辑</a>
-                                <a href="{$ANY.__APP__}?s=Article/delarc&arcid={$d.arcid}" class="btn btn-danger delbtn">删除</a>
+                                <a href="{$ANY.__APP__}?s=Article/arcclassedit&classid={$d.id}" class="btn btn-sky arcclasseditbtn">编辑</a>
+                                <a href="{$ANY.__APP__}?s=Article/delarcclass&classid={$d.id}" class="btn btn-danger btndelete">删除</a>
+                                {if $d.status}
+                                <a href="{$ANY.__APP__}?s=Article/arcclassshow&classid={$d.id}&status=0" class="btn btn-danger btndelete">隐藏</a>
+                                {else}
+                                <a href="{$ANY.__APP__}?s=Article/arcclassshow&classid={$d.id}&status=1" class="btn btn-success btndelete">显示</a>
+                                {/if}
                             </td>
                         </tr>
                         {/foreach}
@@ -115,4 +112,19 @@
 </div>
 <!-- /Page Content -->
 
+<script type="text/javascript">
+$(function () {
+//编辑新闻分类
+$(".arcclasseditbtn").on('click', function () {
+    $.post($(this).attr("href"), {}, function (data){
+        if (!data.error) {
+            $("#arcclassbox").html(data.data.html).show();
+        } else {
+            alertPanelShow(status, data.msg);
+        }
+    });
+    return false;
+});
+})
+</script>
 {include file="Common/foot.html"}

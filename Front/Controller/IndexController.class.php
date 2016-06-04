@@ -16,6 +16,10 @@ class IndexController extends BaseController
     public function __construct()
     {
         parent::__construct();
+
+        //文章分类
+        $this->_article_class = D('Article')->getArcclass();
+        $this->assign('articleclass', $this->_article_class);
     }
 
     //系统首页
@@ -26,11 +30,15 @@ class IndexController extends BaseController
         $this->assign('simglist', $simglist);
 
         //党建新闻
-        $djarclist = D('Article')->getArc(null, CR('Article')->arcclass['news']['id'], null, 0, 7);
+        $djarcclassinfo = current($this->_article_class);
+        $this->assign('djarcclassinfo', $djarcclassinfo);
+        $djarclist = D('Article')->getArc(null, $djarcclassinfo['id'], null, 0, 7);
         $this->assign('djarclist', $djarclist['data']);
 
         //平台公告
-        $ntarclist = D('Article')->getArc(null, CR('Article')->arcclass['notice']['id'], null, 0, 7);
+        $ntarcclassinfo = next($this->_article_class);
+        $this->assign('ntarcclassinfo', $ntarcclassinfo);
+        $ntarclist = D('Article')->getArc(null, $ntarcclassinfo['id'], null, 0, 7);
         $this->assign('ntarclist', $ntarclist['data']);
 
         //获取课程总数

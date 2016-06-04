@@ -1,0 +1,63 @@
+<!-- exambox -->
+<div id="arcclasseditbox" style="display: none;">
+    <form role="form" name="arcclassform" method="post" action="javascript:;" doaction="{$ANY.__APP__}?s=Article/arcclasssave">
+        <input type="hidden" name="classid" value="{$arcclassinfo.id}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-title"><b>分类名称：</b></div>
+                <div class="form-group">
+                    <input type="text" name="classname" value="{$arcclassinfo.name}" class="form-control" placeholder="新闻分类名称">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{$SERVER.HOST.JS_SERVER}Themes/beyond/Assets/js/bootbox/bootbox.js"></script>
+<script>
+$(function (){
+//获取message内容
+var modalshtml = $("#arcclasseditbox").html();
+//清除原Form表单html内容
+$("#arcclasseditbox").html(null);
+
+//初始化bootbox - exambox
+bootbox.dialog({
+    title: "编辑新闻分类",
+    message: modalshtml,
+    className: "modal-darkorange",
+    buttons: {
+        success: {
+            label: "确定",
+            className: "btn-blue",
+            callback: function (event){
+                if (!$("form[name=arcclassform]").find("input[name=classname]").val()) {
+                    alertPanelShow('error', '请填写新闻分类名称！');
+                    return false;
+                }
+
+                //绑定Form表单submit事件
+                $("form[name=arcclassform]").submit(function (event){
+                    event.preventDefault();
+
+                    var url = $(this).attr('doaction');
+                    var postdata = $(this).serialize();
+                    $.post(url, postdata, function (data){
+                        var status = data.error ? 'error' : 'success';
+                        alertPanelShow(status, data.msg);
+                    }, 'json');
+                    return false;
+                });
+                //提交FORM 保存试题信息
+                $("form[name=arcclassform]").submit();
+            }
+        },
+        danger: {
+            label: "取消",
+            className: "btn-danger",
+            callback: function (){}
+        }
+    }
+});
+});
+</script>
