@@ -17,9 +17,9 @@
                 <div class="time col-xs-2"><p class="y">{'d'|date:{$d.createtime}}</p><p class="md">{'y.m'|date:{$d.createtime}}</p></div>
                 <div class="cont col-xs-10">
                     <p class="title">
-                        <a href="{$ANY.__APP__}?s=Article/news&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a>
+                        <a href="{$ANY.__APP__}?s=Article/news&arcid={$d.arcid}" title="{$d.title}">{$d.title|trim:' '|trim:'　'}</a>
                     </p>
-                    <div class="desc">{$d.content|html_entity_decode|htmlSubString:85}</div>
+                    <div class="desc">{$d.content|html_entity_decode|strip_tags|trim:' &nbsp;'|htmlSubString:85}</div>
                 </div>
             </li>
             {/foreach}

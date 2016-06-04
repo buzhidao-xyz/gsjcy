@@ -41,11 +41,11 @@
                 </div> -->
                 <div class="col-xs-12">
                     {if $courseinfo.status==1}
-                    <p><a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 随堂测评 </a></p>
+                    <p><a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 随堂练习 </a></p>
                     {else if $courseinfo.status==2}
                     <p><a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 查看成绩 </a></p>
                     {else}
-                    <p><a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 随堂测评 </a></p>
+                    <p><a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" id="ExamBtn" class="btn btn-block btn-red"> 随堂练习 </a></p>
                     {/if}
                 </div>
             </div>

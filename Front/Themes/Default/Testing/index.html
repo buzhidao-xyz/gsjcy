@@ -39,9 +39,10 @@
                 <span class="uncompleted">未完成</span>
                 <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-red oplink">开始测评</a>
                 {else}
-                <a href="javascript:;" class="name disabled" disabled><font color="#CB1C1D">[未学习]</font>{$testinginfo.title}</a>
+                <!-- <a href="javascript:;" class="name disabled" disabled><font color="#CB1C1D">[未学习]</font>{$testinginfo.title}</a> -->
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="name">[已学习]{$testinginfo.title}</a>
                 <span class="uncompleted">未完成</span>
-                <a href="javascript:;" class="btn btn-red oplink disabled" disabled>开始测评</a>
+                <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-red oplink">开始测评</a>
                 {/if}
                 {/if}
                 <!-- <a href="javascript:;" class="btn btn-info oplink">复习资料</a> -->

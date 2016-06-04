@@ -27,11 +27,11 @@
                     <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="title">{$testinginfo.title}</a>
                     <span class="uncompleted">未完成</span>
                     {else}
-                    <a href="javascript:;" class="title disabled" disabled>{$testinginfo.title}</a>
-                    <span class="uncompleted">未学习</span>
+                    <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="title">{$testinginfo.title}</a>
+                    <span class="uncompleted">未完成</span>
                     {/if}
                     {/if}
-                    <span class="tongji">已有 <font color="#CB1C1D" size="3">{$testinginfo.donenum}</font> 位党员参加学习</span>
+                    <span class="tongji">已有 <font color="#CB1C1D" size="3">{$testinginfo.donenum}</font> 位党员完成练习</span>
                 </div>
                 <div class="ops row clearfix">
                     <div class="col-xs-12">
@@ -39,9 +39,9 @@
                         <a href="{$ANY.__APP__}?s=Testing/profile&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-info">查看成绩</a>
                         {else}
                         {if $testinginfo.ucstatus}
-                        <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-red">开始测评</a>
+                        <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-red">开始练习</a>
                         {else}
-                        <a href="javascript:;" class="btn btn-block btn-study btn-red disabled" disabled>开始测评</a>
+                        <a href="{$ANY.__APP__}?s=Testing/exam&testingid={$testinginfo.testingid}&classid={$testinginfo.classid}" class="btn btn-block btn-study btn-red">开始练习</a>
                         {/if}
                         {/if}
                     </div>
@@ -49,7 +49,7 @@
             </li>
             {/foreach}
             {else}
-            <p><h3 class="text-center">暂无测评</h3></p>
+            <p><h3 class="text-center">暂无练习</h3></p>
             {/if}
         </ul>
 

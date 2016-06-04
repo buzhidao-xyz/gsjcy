@@ -45,11 +45,11 @@
                     </div>
                     <div class="col-xs-6">
                         {if $courseinfo.status==1}
-                        <a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">完成随堂测评</a>
+                        <a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">完成随堂练习</a>
                         {else if $courseinfo.status==2}
-                        <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">随堂测评成绩</a>
+                        <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">随堂练习成绩</a>
                         {else}
-                        <a href="javascript:;" class="btn btn-block btn-study btn-info disabled" disabled>完成随堂测评</a>
+                        <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="btn btn-block btn-study btn-info">完成随堂练习</a>
                         {/if}
                     </div>
                 </div>

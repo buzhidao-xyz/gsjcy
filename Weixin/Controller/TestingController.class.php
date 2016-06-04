@@ -80,6 +80,22 @@ class TestingController extends CommonController
         $testingid = $this->_getTestingid();
 
         $testinginfo = D('Testing')->getTestingByID($courseid, $testingid, $userid);
+        $courseid = $testinginfo['courseid'];
+        //如果课程未学习 标识为已学习
+        $courseinfo = D('Course')->getCourseByID($courseid, $userid);
+        //记录开始学习时间
+        if (!$courseinfo['begintime']) {
+            M('user_course')->add(array(
+                'userid'       => $userid,
+                'courseid'     => $courseinfo['courseid'],
+                'status'       => 0,
+                'begintime'    => TIMESTAMP,
+                'completetime' => 0,
+            ));
+        }
+        CR('Course')->scomplete($courseid);
+
+        $testinginfo = D('Testing')->getTestingByID($courseid, $testingid, $userid);
         $testingid = $testinginfo['testingid'];
         if (!is_array($testinginfo) || empty($testinginfo)) {
             $this->assign('errormsg', '该课程暂无测评试卷！');

@@ -58,7 +58,7 @@
                         <a href="{$ANY.__APP__}?s=Course/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}">再次学习</a>
                         <a href="{$ANY.__APP__}?s=Testing/profile&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="" style="color: #337ab7;">随堂测评成绩</a>
                         {else}
-                        <a href="javascript:;" class="disabled" disabled>完成随堂测评</a>
+                        <a href="{$ANY.__APP__}?s=Testing/exam&courseid={$courseinfo.courseid}&classid={$courseinfo.classid}" class="">完成随堂测评</a>
                         {/if}
                     </p>
                 </div>
