@@ -86,8 +86,12 @@ class TestingController extends CommonController
         $testingid = $this->_getTestingid();
 
         $testinginfo = D('Testing')->getTestingByID($courseid, $testingid, $userid);
-        $courseid = $testinginfo['courseid'];
+        if (!is_array($testinginfo) || empty($testinginfo) || !$testinginfo['testingid']) {
+            $this->assign('errormsg', '该课程暂无测评试卷！');
+            $this->display();
+        }
         //如果课程未学习 标识为已学习
+        $courseid = $testinginfo['courseid'];
         $courseinfo = D('Course')->getCourseByID($courseid, $userid);
         //记录开始学习时间
         if (!$courseinfo['begintime']) {
@@ -103,9 +107,7 @@ class TestingController extends CommonController
         
         $testinginfo = D('Testing')->getTestingByID($courseid, $testingid, $userid);
         $testingid = $testinginfo['testingid'];
-        if (!is_array($testinginfo) || empty($testinginfo)) {
-            $this->assign('errormsg', '该课程暂无测评试卷！');
-        } else if (!$testinginfo['ucstatus']) {
+        if (!$testinginfo['ucstatus']) {
             $this->assign('errormsg', '请先学习该课程！');
         } else if ($testinginfo['utstatus']) {
             header('location:'.__APP__.'?s=Testing/profile&testingid='.$testingid.'&classid='.$classid);
