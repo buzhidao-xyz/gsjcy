@@ -89,6 +89,7 @@ class TestingController extends CommonController
         if (!is_array($testinginfo) || empty($testinginfo) || !$testinginfo['testingid']) {
             $this->assign('errormsg', '该课程暂无测评试卷！');
             $this->display();
+            exit;
         }
         //如果课程未学习 标识为已学习
         $courseid = $testinginfo['courseid'];
@@ -109,6 +110,8 @@ class TestingController extends CommonController
         $testingid = $testinginfo['testingid'];
         if (!$testinginfo['ucstatus']) {
             $this->assign('errormsg', '请先学习该课程！');
+            $this->display();
+            exit;
         } else if ($testinginfo['utstatus']) {
             header('location:'.__APP__.'?s=Testing/profile&testingid='.$testingid.'&classid='.$classid);
             exit;
