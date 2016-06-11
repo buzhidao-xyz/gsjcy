@@ -5,7 +5,7 @@
             {if is_array($articleclass)}
             {foreach $articleclass as $d}
             {if isset($classid)&&$classid==$d.id}
-            <li class="col-xs-6 active"><a href="{$ANY.__APP__}?s=Article/news&classid={$d.id}">{$d.name}</a></li>
+            <li class="col-xs-12 active"><a href="{$ANY.__APP__}?s=Article/news&classid={$d.id}">{$d.name}</a></li>
             {/if}
             {/foreach}
             {/if}
