@@ -4,7 +4,9 @@
         <ul class="list-unstyled">
             {if is_array($articleclass)}
             {foreach $articleclass as $d}
-            <li class="col-xs-6 {if isset($classid)&&$classid==$d.id}active{/if}"><a href="{$ANY.__APP__}?s=Article/news&classid={$d.id}">{$d.name}</a></li>
+            {if isset($classid)&&$classid==$d.id}
+            <li class="col-xs-6 active"><a href="{$ANY.__APP__}?s=Article/news&classid={$d.id}">{$d.name}</a></li>
+            {/if}
             {/foreach}
             {/if}
         </ul>
