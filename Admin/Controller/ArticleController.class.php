@@ -250,7 +250,6 @@ class ArticleController extends CommonController
                 'title'      => $title,
                 'classid'    => $classid,
                 'content'    => $content,
-                'classid'    => $this->_classid,
                 'keyword'    => $keyword,
                 'status'     => 1,
                 'viewnum'    => 0,
