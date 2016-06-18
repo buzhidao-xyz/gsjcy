@@ -86,6 +86,14 @@ class TestingController extends CommonController
     //试卷管理
     public function index()
     {
+
+        $datalist = M('exam_option')->select();
+        foreach ($datalist as $data) {
+            if (preg_match("/^(A|B|C|D)(、|.|。)/i", $data['title'])) {
+                M('exam_option')->where(array('optionid'=>$data['optionid']))->update(array('title'=>preg_match("/^(A|B|C|D)(、|.|。)/i", $data['title'])));
+            }
+        }
+
         $keywords = $this->_getKeywords();
 
         list($start, $length) = $this->_mkPage();
