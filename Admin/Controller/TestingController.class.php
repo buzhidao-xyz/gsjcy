@@ -326,7 +326,7 @@ class TestingController extends CommonController
 
                     //题目
                     if ($col == 'A') {
-                        $examitem['title'] = $val;
+                        $examitem['title'] = htmlentities($val);
                     }
                     //答案
                     if ($col == 'B') {
@@ -339,7 +339,7 @@ class TestingController extends CommonController
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'A',
-                            'title' => str_replace('A.', '', $val, $c),
+                            'title' => htmlentities(str_replace('A.', '', $val, $c)),
                         );
                     }
                     //选项B
@@ -348,7 +348,7 @@ class TestingController extends CommonController
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'B',
-                            'title' => str_replace('B.', '', $val, $c),
+                            'title' => htmlentities(str_replace('B.', '', $val, $c)),
                         );
                     }
                     //选项C
@@ -357,7 +357,7 @@ class TestingController extends CommonController
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'C',
-                            'title' => str_replace('C.', '', $val, $c),
+                            'title' => htmlentities(str_replace('C.', '', $val, $c)),
                         );
                     }
                     //选项D
@@ -366,7 +366,7 @@ class TestingController extends CommonController
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'D',
-                            'title' => str_replace('D.', '', $val, $c),
+                            'title' => htmlentities(str_replace('D.', '', $val, $c)),
                         );
                     }
                     //分数
