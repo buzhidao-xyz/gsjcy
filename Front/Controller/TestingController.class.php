@@ -119,7 +119,8 @@ class TestingController extends CommonController
 
         //随机取10道题
         $exams = array();
-        $examsrand = array_rand($testinginfo['exams'], 10);
+        $examnum = count($testinginfo['exams'])>10 ? 10 : count($testinginfo['exams']);
+        $examsrand = array_rand($testinginfo['exams'], $examnum);
         $i = 0;
         foreach ($examsrand as $key) {
             $exams[$i] = $testinginfo['exams'][$key];

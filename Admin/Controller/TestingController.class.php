@@ -335,6 +335,7 @@ class TestingController extends CommonController
                     }
                     //选项A
                     if ($col == 'C') {
+                        $val = preg_replace("/^(A|B|C|D)(、|.|。)/i", '', $val);
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'A',
@@ -343,6 +344,7 @@ class TestingController extends CommonController
                     }
                     //选项B
                     if ($col == 'D') {
+                        $val = preg_replace("/^(A|B|C|D)(、|.|。)/i", '', $val);
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'B',
@@ -351,6 +353,7 @@ class TestingController extends CommonController
                     }
                     //选项C
                     if ($col == 'E') {
+                        $val = preg_replace("/^(A|B|C|D)(、|.|。)/i", '', $val);
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'C',
@@ -359,6 +362,7 @@ class TestingController extends CommonController
                     }
                     //选项D
                     if ($col == 'F') {
+                        $val = preg_replace("/^(A|B|C|D)(、|.|。)/i", '', $val);
                         $c = 1;
                         $examitem['options'][] = array(
                             'name' => 'D',
@@ -372,6 +376,8 @@ class TestingController extends CommonController
                 }
                 $examitem['createtime'] = TIMESTAMP;
                 $examitem['updatetime'] = TIMESTAMP;
+
+                if (!$examitem['title'] || !$examitem['answer']) continue;
 
                 $examid = D('Testing')->examsave($examitem);
                 if ($examid) {
