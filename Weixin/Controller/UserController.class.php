@@ -281,7 +281,8 @@ class UserController extends BaseController
         $usercourselearninfo = D('User')->gcUserCourseLearn($userid, $this->_course_class);
         //统计作业完成情况
         $userworkfiledinfo = D('User')->getUserWorkFiled($userid, C('USER.work_weight'));
-        $this->assign('usergotscore', $usercourselearninfo['total']['weightscore']+$userworkfiledinfo['weightscore']);
+        // $this->assign('usergotscore', $usercourselearninfo['total']['weightscore']+$userworkfiledinfo['weightscore']);
+        $this->assign('usergotscore', $usercourselearninfo['total']['avgscore']);
 
         //解析分页数据
         $this->_mkPagination($total);

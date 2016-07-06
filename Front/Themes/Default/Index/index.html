@@ -71,7 +71,7 @@ $(function(){
             <ul class="cont list-unstyled">
                 {if isset($ntarclist)&&is_array($ntarclist)&&!empty($ntarclist)}
                 {foreach $ntarclist as $d}
-                <li><a href="{$ANY.__APP__}?s=Article/notice&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a><span class="time">[{'m.d'|date:{$d.createtime}}]</span></li>
+                <li><a href="{$ANY.__APP__}?s=Article/news&arcid={$d.arcid}" title="{$d.title}">{$d.title}</a><span class="time">[{'m.d'|date:{$d.createtime}}]</span></li>
                 {/foreach}
                 {/if}
             </ul>

@@ -144,7 +144,7 @@ class UserModel extends CommonModel
             $totalscore = $totalscore>0 ? $totalscore : 0;
 
             //计算该类平均分
-            $avgscore = $testingtotalnum>0 ? floor($totalscore/$testingtotalnum) : 0;
+            $avgscore = $testingtotalnum>0 ? floor($totalscore/$testingdonenum) : 0;
             //计算权重分
             $weightscore = floor($avgscore*$classinfo['weight']);
             
@@ -176,7 +176,7 @@ class UserModel extends CommonModel
         }
 
         //合计 计算平均分
-        $usercourselearninfo['total']['avgscore'] = $usercourselearninfo['total']['testingtotalnum']>0 ? floor($usercourselearninfo['total']['totalscore']/$usercourselearninfo['total']['testingtotalnum']) : 0;
+        $usercourselearninfo['total']['avgscore'] = $usercourselearninfo['total']['testingdonenum']>0 ? floor($usercourselearninfo['total']['totalscore']/$usercourselearninfo['total']['testingdonenum']) : 0;
         $usercourselearninfo['total']['percent'] = $usercourselearninfo['total']['coursetotalnum']>0 ? floor($usercourselearninfo['total']['courselearnnum']/$usercourselearninfo['total']['coursetotalnum']*100) : 0;
         $usercourselearninfo['total']['testingpercent'] = $usercourselearninfo['total']['testingtotalnum']>0 ? floor($usercourselearninfo['total']['testingdonenum']/$usercourselearninfo['total']['testingtotalnum']*100) : 0;
 

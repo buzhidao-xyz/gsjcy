@@ -330,8 +330,18 @@ class TestingController extends CommonController
                     }
                     //答案
                     if ($col == 'B') {
-                        $examitem['answer'] = $val;
-                        $examitem['type'] = strlen($val)>1 ? 2 : 1;
+                        $examitem['answer'] = '';
+                        //取aAａＡ
+                        if (strpos($val, 'a')!==false || strpos($val, 'A')!==false || strpos($val, 'ａ')!==false || strpos($val, 'Ａ')!==false) $examitem['answer'] .= 'A';
+                        //取bBｂＢ
+                        if (strpos($val, 'b')!==false || strpos($val, 'B')!==false || strpos($val, 'ｂ')!==false || strpos($val, 'Ｂ')!==false) $examitem['answer'] .= 'B';
+                        //取cCｃＣ
+                        if (strpos($val, 'c')!==false || strpos($val, 'C')!==false || strpos($val, 'ｃ')!==false || strpos($val, 'Ｃ')!==false) $examitem['answer'] .= 'C';
+                        //取dDｄＤ
+                        if (strpos($val, 'd')!==false || strpos($val, 'D')!==false || strpos($val, 'ｄ')!==false || strpos($val, 'Ｄ')!==false) $examitem['answer'] .= 'D';
+
+                        // $examitem['answer'] = $val;
+                        $examitem['type'] = strlen($examitem['answer'])>1 ? 2 : 1;
                     }
                     //选项A
                     if ($col == 'C') {
