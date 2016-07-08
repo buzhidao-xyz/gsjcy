@@ -24,10 +24,27 @@ class UserController extends BaseController
         $this->assign('courseclass', $this->_course_class);
     }
 
+    /**
+     * 检查登录状态
+     */
+    protected function _CKUserLogon()
+    {
+        $userinfo = session('userinfo');
+        //如果没有用户信息或者用户信息为空 表示未登录
+        if (!$userinfo || !is_array($userinfo) || (isset($this->userinfo['youkeflag']) && $this->userinfo['youkeflag'])) {
+            //如果是AJAX请求 返回登录location 否则跳转到登录页User/login
+            !IS_AJAX ? $this->_gotoLogin() : $this->ajaxReturn(0, '请先登录！', array(
+                'location' => __APP__.'?s=User/login',
+            ));
+        }
+
+        return true;
+    }
+
     //检测如果已登录 则跳转到home页
     private function _CKGotoHome()
     {
-        if (is_array($this->userinfo) && !empty($this->userinfo)) {
+        if (is_array($this->userinfo) && !empty($this->userinfo) && !isset($this->userinfo['youkeflag']) && !$this->userinfo['youkeflag']) {
             header('location:'.__APP__.'?s=User/home');
             exit;
         }
@@ -129,6 +146,13 @@ class UserController extends BaseController
         //检查是否已记录过微信用户openid
         // $this->_CKWXUser();
 
+        $youkelink = 1;
+        $location = session('location');
+        if (!$location || preg_match("/(s=User\/)/i", $location)) {
+            $youkelink = 0;
+        }
+        $this->assign('youkelink', $youkelink);
+
         $this->display();
     }
 
@@ -155,6 +179,27 @@ class UserController extends BaseController
         ));
     }
 
+    //执行游客登录
+    public function youke()
+    {
+        $this->_CKGotoHome();
+
+        //自动登录游客身份
+        $sessionUserInfo = array(
+            'userid'   => '99999999',
+            'account'  => 'youke',
+            'username' => '游客',
+            'youkeflag' => 1
+        );
+        $this->_GSUserinfo($sessionUserInfo);
+        $location = session('location');
+        !$location ? $location = __APP__.'?s=User/home' : null;
+
+        header('location:'.$location);
+        session('location', null);
+        exit;
+    }
+
     //用户 执行登录成功
     private function _loginSuccess($userInfo=array())
     {
@@ -163,6 +208,7 @@ class UserController extends BaseController
             'userid'   => $userInfo['userid'],
             'account'  => $userInfo['account'],
             'username' => $userInfo['username'],
+            'youkeflag' => 0,
         );
         $this->_GSUserinfo($sessionUserInfo);
 
