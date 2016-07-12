@@ -1,3 +1,8 @@
+{if isset($userinfo.youkeflag) && $userinfo.youkeflag}
+<div class="resume">
+    <h4 class="text-center" style="color: #CB1C1D; font-size: 17px;">游客身份</h4>
+</div>
+{else}
 <div class="resume">
     <span class=""><b>我的练习：</b></span>
     <span class="cont">已完成 <font color="#CB1C1D">{$usercourseinfo.total.testingdonenum}</font> 课</span>
@@ -6,3 +11,4 @@
         <div class="progress-bar" role="progressbar" aria-valuenow="{$usercourseinfo.total.testingpercent}" aria-valuemin="0" aria-valuemax="100" style="width: {$usercourseinfo.total.testingpercent}%;">已学习{$usercourseinfo.total.testingpercent}%</div>
     </div>
 </div>
+{/if}
