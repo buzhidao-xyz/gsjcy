@@ -195,7 +195,7 @@ class TestingController extends CommonController
         );
         $usertestingresult = $usertestingresult;
 
-        if ((int)$gotscore>=(int)$testinginfo['passscore'] && !isset($this->userinfo['youkeflag']) && !$this->userinfo['youkeflag']) {
+        if ((int)$gotscore>=(int)$testinginfo['passscore'] && (!isset($this->userinfo['youkeflag']) || !$this->userinfo['youkeflag'])) {
             //及格
             
             M('testing')->startTrans();
